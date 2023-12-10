@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\daftar_pasien;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DaftarPasienControlleer extends Controller
 {
@@ -95,14 +96,18 @@ class DaftarPasienControlleer extends Controller
     {
         $data = $request->session()->get('data');
 
-        return view('admin.daftar_pasien.create_step_two',compact('data'));
+        $ambilnik = $data->nik;
+        $ceknik = daftar_pasien::all()->where('nik',$ambilnik)->first();
+        // dd($ceknik);
+
+        return view('admin.daftar_pasien.create_step_two',compact('data','ceknik'));
     }
 
     public function postCreateStepTwo(Request $request)
     {
-        $now = Carbon::now();
+        $now = Carbon::now()->setTimezone('Asia/Makassar');
         $cek = daftar_pasien::count();
-        $d = $now->day;
+        $d = $now->toDateString();
         // dd($a);
         if ( $cek == 0 ){
             $urut = 1001;
@@ -114,19 +119,27 @@ class DaftarPasienControlleer extends Controller
             $nomer = $ambil->no_registrasi + 1;
         }
 
+        
         // $cektgl = daftar_pasien::where()
         $tgl = daftar_pasien::all()->last();
+        $kunjungan = $request->tgl_kunjungan;
         // $ambiltgl = $tgl->tgl_kunjungan;
         // dd($tgl);
         if ( $tgl == null ){
-            $uantri = '001';
+            $uantri = '1';
         } elseif ($tgl != null) {
             $ambiltgl = $tgl->tgl_kunjungan;
-            $uantri = (int)substr($tgl->no_antrian, -3) + 1;
-            
+            if ($kunjungan != $d ) {
+                $cekdata = daftar_pasien::all()->where('tgl_kunjungan',$kunjungan)->last();
+                if ($cekdata != null) {
+                    $uantri = (int)substr($cekdata->no_antrian, -4) + 1;
+                } else {
+                    $uantri = '1';
+                }
+            } else {
+                $uantri = (int)substr($tgl->no_antrian, -4) + 1;
+            }
         }
-
-        dd($uantri);
 
     	$validatedData = $request->validate([
             'loket' => 'required',
@@ -137,13 +150,14 @@ class DaftarPasienControlleer extends Controller
             'no_hp' => 'required',
             'cara_bayar' => 'required',
             'tgl_kunjungan' => 'required',
-            // 'poli_tujuan' => 'required',
+            'poli_tujuan' => 'required', //bisa kosong
             'dokter' => 'required',
         ]);
 
         $data = $request->session()->get('data');
         $data->fill($validatedData);
         // $data->dokter = $request->dokter;
+        $data->no_antrian = $uantri;
         $data->no_registrasi = $nomer;
         $request->session()->put('data', $data);
         // dd($data);

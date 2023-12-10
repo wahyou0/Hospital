@@ -110,11 +110,11 @@
 				</tr>
 				<tr class="item">
 					<td>Nomor Registrasi</td>
-					<td class="fw-semibold"></td>
+					<td class="fw-semibold">{{ $data->no_registrasi }}</td>
 				</tr>
 				<tr class="item">
 					<td>Nomor Antrian</td>
-					<td class="fw-semibold"></td>
+					<td class="fw-semibold"> {{ $data->no_antrian }} </td>
 				</tr>
 				<tr class="item">
 					<td>Jenis Pasien</td>

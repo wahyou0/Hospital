@@ -51,44 +51,48 @@
                     <div class="block-content">
                     <form action="{{ url('pendaftaran-pasien/post-step-two') }}" method="POST">
                         @csrf
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                        <label class="form-label">Nomor Rekam Medis</label>
-                                        <input type="text" class="form-control form-control-lg" name="no_rekam_medis" placeholder="" readonly>
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label">Nama Pasien</label>
-                                        <input type="text" class="form-control form-control-lg" name="nama_pasien" value="{{ $data->nama_pasien ?? '' }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                        <label class="form-label">Tempat Lahir</label>
-                                        <input type="text" class="form-control form-control-lg" name="tempat_lahir" value="{{ $data->tempat_lahir ?? '' }}">
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label">Tanggal Lahir</label>
-                                        <input type="text" class="form-control form-control-lg" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}">
+                        {{-- @foreach ($ceknik as $item) --}}
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row mb-4">
+                                        <div class="col-6">
+                                            <label class="form-label">Nomor Rekam Medis</label>
+                                            <input type="text" class="form-control form-control-lg" name="no_rekam_medis" value="" placeholder="" readonly>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Nama Pasien</label>
+                                            <input type="text" class="form-control form-control-lg" name="nama_pasien" value="{{ $ceknik->nama_pasien }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row mb-4">
+                                        <div class="col-6">
+                                            <label class="form-label">Tempat Lahir</label>
+                                            <input type="text" class="form-control form-control-lg" name="tempat_lahir" value="{{ $ceknik->tempat_lahir }}">
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Tanggal Lahir</label>
+                                            <input type="text" class="form-control form-control-lg" name="tgl_lahir" value="{{ $ceknik->tgl_lahir }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        {{-- @endforeach --}}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row mb-4">
                                     <div class="col-6">
                                         <label class="form-label">Nik</label>
-                                        <input type="text" class="form-control form-control-lg" name="nik" value="{{ $data->nik ?? ''}}">
+                                        <input type="text" class="form-control form-control-lg" name="nik" value="{{ $ceknik->nik ?? ''}}">
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Kontak Pasien</label>
-                                        <input type="text" class="form-control form-control-lg" name="no_hp" value="{{ $data->no_hp ?? '' }}">
+                                        <input type="text" class="form-control form-control-lg" name="no_hp" value="{{ $ceknik->no_hp ?? '' }}">
                                     </div>
                                 </div>
                             </div>

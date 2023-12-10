@@ -80,7 +80,7 @@
                                 </tr>
                                 <tr>
                                     <td>Nomor Antrian</td>
-                                    <td class="fw-semibold"></td>
+                                    <td class="fw-semibold">{{ $data->no_antrian }}</td>
                                 </tr>
                                     <td>Loket Antrian</td>
                                     <td class="fw-semibold">{{ $data->loket }}</td>
