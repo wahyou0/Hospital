@@ -22194,3 +22194,12 @@ Did you mean this?
 #61 C:\\xampp\\htdocs\\Hospital\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #62 {main}
 "} 
+[2023-12-10 10:26:23] local.ERROR: There are no commands defined in the "cahce" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"cahce\" namespace. at C:\\xampp\\htdocs\\Hospital\\vendor\\symfony\\console\\Application.php:669)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\Hospital\\vendor\\symfony\\console\\Application.php(720): Symfony\\Component\\Console\\Application->findNamespace('cahce')
+#1 C:\\xampp\\htdocs\\Hospital\\vendor\\symfony\\console\\Application.php(266): Symfony\\Component\\Console\\Application->find('cahce:clear')
+#2 C:\\xampp\\htdocs\\Hospital\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\xampp\\htdocs\\Hospital\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\xampp\\htdocs\\Hospital\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
