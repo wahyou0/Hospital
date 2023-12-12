@@ -115,87 +115,33 @@
                         
                     <form action="<?php echo e(url('pendaftaran-pasien/post-step-three')); ?>" method="POST">
                         <?php echo csrf_field(); ?>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                        <input type="text" class="form-control form-control-lg" name="no_rekam_medis" placeholder="" hidden>
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control form-control-lg" hidden name="nama_pasien" value="<?php echo e($data->nama_pasien ?? ''); ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                        <input type="text" class="form-control form-control-lg" hidden name="tempat_lahir" value="<?php echo e($data->tempat_lahir ?? ''); ?>">
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control form-control-lg" hidden name="tgl_lahir" value="<?php echo e($data->tgl_lahir ?? ''); ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                
-                                        <input type="text" class="form-control form-control-lg" hidden name="nik" value="<?php echo e($data->nik ?? ''); ?>">
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control form-control-lg" hidden name="no_hp" value="<?php echo e($data->no_hp ?? ''); ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-xl-12">
-                            <div class="mb-4">
-                                <select class="js-select2 form-select" id="val-select2" hidden name="cara_bayar" required style="width: 100%;" data-placeholder="Choose one..">
-                                    <option hidden value="<?php echo e($data->cara_bayar ?? ''); ?>"><?php echo e($data->cara_bayar); ?></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                    <option value="BRI">BRI</option>
-                                    <option value="BNI">BNI</option>
-                                    <option value="Mandiri">Mandiri</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-xl-12">
-                            <div class="mb-4">
-                                <input type="date" class="form-control" hidden name="tgl_kunjungan" value="<?php echo e($data->tgl_kunjungan ?? ''); ?>">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                        <select class="js-select2 form-select" id="val-select2" hidden name="loket" style="width: 100%;" data-placeholder="Choose one..">
-                                            <option hidden value="<?php echo e($data->loket ?? ''); ?>"><?php echo e($data->loket); ?></option><!-- for data-placeholder attribute to work with Select2 plugin -->
-                                            <option value="Loket A">Loket A</option>
-                                            <option value="Loket B">Loket B</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
-                                        <select class="js-select2 form-select" id="val-select2" hidden name="poli_tujuan" style="width: 100%;" data-placeholder="Choose one..">
-                                            <option hidden value="<?php echo e($data->poli_tujuan ?? ''); ?>"><?php echo e($data->poli_tujuan); ?></option><!-- for data-placeholder attribute to work with Select2 plugin -->
-                                            <option value="Loket A">Loket A</option>
-                                            <option value="Loket B">Loket B</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-xl-12">
-                            <div class="mb-4">
-                                <select class="js-select2 form-select" id="val-select2" hidden name="dokter" style="width: 100%;" data-placeholder="Choose one..">
-                                    <option hidden value="<?php echo e($data->dokter ?? ''); ?>"><?php echo e($data->dokter); ?></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                    <option value="Loket A">Loket A</option>
-                                    <option value="Loket B">Loket B</option>
-                                </select>
-                            </div>
-                        </div>
+                            <input type="text" class="form-control form-control-lg" name="no_rekam_medis" placeholder="" hidden>
+                            <input type="text" class="form-control form-control-lg" hidden name="nama_pasien" value="<?php echo e($data->nama_pasien ?? ''); ?>">
+                            <input type="text" class="form-control form-control-lg" hidden name="tempat_lahir" value="<?php echo e($data->tempat_lahir ?? ''); ?>">
+                            <input type="text" class="form-control form-control-lg" hidden name="tgl_lahir" value="<?php echo e($data->tgl_lahir ?? ''); ?>">
+                            <input type="text" class="form-control form-control-lg" hidden name="nik" value="<?php echo e($data->nik ?? ''); ?>">
+                            <input type="text" class="form-control form-control-lg" hidden name="no_hp" value="<?php echo e($data->no_hp ?? ''); ?>">
+                            <select class="js-select2 form-select" id="val-select2" hidden name="cara_bayar" required style="width: 100%;" data-placeholder="Choose one..">
+                                <option hidden value="<?php echo e($data->cara_bayar ?? ''); ?>"><?php echo e($data->cara_bayar); ?></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <option value="BRI">BRI</option>
+                                <option value="BNI">BNI</option>
+                                <option value="Mandiri">Mandiri</option>
+                            <input type="date" class="form-control" hidden name="tgl_kunjungan" value="<?php echo e($data->tgl_kunjungan ?? ''); ?>">
+                            <select class="js-select2 form-select" id="val-select2" hidden name="loket" style="width: 100%;" data-placeholder="Choose one..">
+                                <option hidden value="<?php echo e($data->loket ?? ''); ?>"><?php echo e($data->loket); ?></option><!-- for data-placeholder attribute to work with Select2 plugin -->
+                                <option value="Loket A">Loket A</option>
+                                <option value="Loket B">Loket B</option>
+                            </select>
+                            <select class="js-select2 form-select" id="val-select2" hidden name="poli_tujuan" style="width: 100%;" data-placeholder="Choose one..">
+                                <option hidden value="<?php echo e($data->poli_tujuan ?? ''); ?>"><?php echo e($data->poli_tujuan); ?></option><!-- for data-placeholder attribute to work with Select2 plugin -->
+                                <option value="Loket A">Loket A</option>
+                                <option value="Loket B">Loket B</option>
+                            </select>
+                            <select class="js-select2 form-select" id="val-select2" hidden name="dokter" style="width: 100%;" data-placeholder="Choose one..">
+                                <option hidden value="<?php echo e($data->dokter ?? ''); ?>"><?php echo e($data->dokter); ?></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <option value="Loket A">Loket A</option>
+                                <option value="Loket B">Loket B</option>
+                            </select>
                         <div class="mb-4">
                         <a href="<?php echo e(url('download')); ?>" class="btn btn-alt-primary pull-right">
                             <i class="fa fa-sync-alt opacity-50 me-1"></i> Download
@@ -211,7 +157,7 @@
 
                     <!-- Footer -->
                     <p class="fa-sm text-muted text-center">
-                        Thank you very much for doing business with us. We look forward to working with you again!
+                        Thank you very much 
                     </p>
                     <!-- END Footer -->
                     </div>

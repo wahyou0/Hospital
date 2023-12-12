@@ -17,12 +17,13 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 5%">No.</th>
-                            <th>Nama Ruangan</th>
-                            <th>Fasilitas</th>
-                            <th>Isi</th>
-                            <th>Kosong</th>
-                            <th>Jumlah Kamar</th>
-                            <th>Kelas</th>
+                            <th>No. Rekam Medis</th>
+                            <th>Nik</th>
+                            <th>Nama Pasien</th>
+                            <th>Tempat Tgl. Lahir</th>
+                            <th>Status</th>
+                            <th>Cara Bayar</th>
+                            <th>Unit Pelayanan</th>
                             <th class="text-center" style="width: 20%;">Aksi</th>
                         </tr>
                     </thead>
@@ -33,19 +34,20 @@
                         @foreach ($daftar as $data)
                         <tr>
                             <td class="text-center">{{ $no++ }}</td>
-                            <td class="fw-semibold">{{ $data->nama_ruangan }}</td>
-                            <td>{{ $data->fasilitas }}</td>
-                            <td>{{ $data->isi }}</td>
-                            <td>{{ $data->kososng }}</td>
-                            <td>{{ $data->jumlah_kamar }}</td>
-                            <td>{{ $data->kelas }}</td>
+                            <td class="fw-semibold">{{ $data->no_rekam_medis }}</td>
+                            <td>{{ $data->nik }}</td>
+                            <td>{{ $data->nama_pasien }}</td>
+                            <td>{{ $data->tempat_lahir }} {{ $data->tgl_lahir }}</td>
+                            <td>{{ $data->jenis_pasien }}</td>
+                            <td>{{ $data->cara_bayar }}</td>
+                            <td>{{ $data->poli_tujuan }}</td>
                             <td>
-                                <form action="{{ url('kamar-rawat/delete/'.$data->id) }}" method="POST">
+                                <form action="{{ url('data-pasien/delete/'.$data->id) }}" method="POST">
                                     @csrf
                                     <a href="" class="btn btn-alt-info" data-bs-toggle="tooltip" title="View Data">
                                         <i class="fa fa-user"></i>
                                     </a>
-                                    <a class="btn btn-alt-success" href="{{ url('kamar-rawat/edit/'.$data->id) }}" data-bs-toggle="tooltip" title="Edit Data">
+                                    <a class="btn btn-alt-success" href="{{ url('data-pasien/edit/'.$data->id) }}" data-bs-toggle="tooltip" title="Edit Data">
                                         <i class="fa fa-pen-to-square"></i>
                                     </a>
                                     <input type="hidden" name="_method" value="DELETE">

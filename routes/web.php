@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\JadwalDokterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KamarRawatController;
 use App\Http\Controllers\Admin\LayananController;
+use App\Http\Controllers\DaftarAntrianController;
 use App\Http\Controllers\TesController;
 use App\Livewire\Wizard;
 use App\Livewire\MultiStepFormWizard;
@@ -84,11 +85,13 @@ Route::group(['middleware' => ['auth']], function (){
 
         Route::get('layanan', [LayananController::class, 'index']);
 
-        Route::get('pendaftaran-pasien', [DaftarPasienControlleer::class, 'index']);
+        
         Route::get('pendaftaran-pasien/cek', [DaftarPasienControlleer::class, 'cek']);
         Route::get('pendaftaran-pasien/create-step-one', [DaftarPasienControlleer::class, 'createStepOneLama']);
         Route::post('pendaftaran-pasien/Post-step-one', [DaftarPasienControlleer::class, 'postCreateStepOneLama']);
         Route::get('pendaftaran-pasien/create-step-two', [DaftarPasienControlleer::class, 'createStepTwo']);
+        //data json
+        Route::get('loket/{id}', [DaftarPasienControlleer::class, 'getLoket']);
 
         Route::get('pendaftaran-pasien/create-step-one-baru', [DaftarPasienControlleer::class, 'createStepOneBaru']);
         Route::post('pendaftaran-pasien/Post-step-one-baru', [DaftarPasienControlleer::class, 'postCreateStepOneBaru']);
@@ -100,6 +103,17 @@ Route::group(['middleware' => ['auth']], function (){
 
         Route::get('download', [DaftarPasienControlleer::class, 'view_pdf']);
         Route::get('bukti-registrasi', [DaftarPasienControlleer::class, 'bukti']);
+
+
+        Route::get('data-pasien', [DaftarPasienControlleer::class, 'index']);
+        Route::get('data-pasien/edit/{id}', [DaftarPasienControlleer::class, 'edit']);
+        Route::post('data-pasien/update', [DaftarPasienControlleer::class, 'update']);
+
+        Route::get('daftar-antrian', [DaftarAntrianController::class, 'index']);
+        Route::get('daftar-antrian/edit/{id}', [DaftarAntrianController::class, 'edit']);
+        Route::post('daftar-antrian/update', [DaftarAntrianController::class, 'update']);
+
+        
 
     });
 });

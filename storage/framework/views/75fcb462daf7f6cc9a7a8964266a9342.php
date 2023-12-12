@@ -1,5 +1,6 @@
+<?php $__env->startSection('content'); ?> 
 
-<?php $__env->startSection('content'); ?>   
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     
     <div class="block block-rounded">
         <div class="block-header block-header-default">
@@ -23,18 +24,16 @@
                     <div class="block-content">
                     <form action="<?php echo e(url('pendaftaran-pasien/post-step-two')); ?>" method="POST">
                         <?php echo csrf_field(); ?>
-                        
-                            
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             <label class="form-label">Nomor Rekam Medis</label>
-                                            <input type="text" class="form-control form-control-lg" name="no_rekam_medis" value="" placeholder="" readonly>
+                                            <input type="text" class="form-control form-control-lg" name="no_rekam_medis" value="<?php echo e($reqnik->no_rekam_medis); ?>" placeholder="" readonly>
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Nama Pasien</label>
-                                            <input type="text" class="form-control form-control-lg" name="nama_pasien" value="<?php echo e($ceknik->nama_pasien); ?>">
+                                            <input type="text" class="form-control form-control-lg" name="nama_pasien" value="<?php echo e($reqnik->nama_pasien); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -44,27 +43,25 @@
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             <label class="form-label">Tempat Lahir</label>
-                                            <input type="text" class="form-control form-control-lg" name="tempat_lahir" value="<?php echo e($ceknik->tempat_lahir); ?>">
+                                            <input type="text" class="form-control form-control-lg" name="tempat_lahir" value="<?php echo e($reqnik->tempat_lahir); ?>">
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Tanggal Lahir</label>
-                                            <input type="text" class="form-control form-control-lg" name="tgl_lahir" value="<?php echo e($ceknik->tgl_lahir); ?>">
+                                            <input type="text" class="form-control form-control-lg" name="tgl_lahir" value="<?php echo e($reqnik->tgl_lahir); ?>">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        
-                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row mb-4">
                                     <div class="col-6">
                                         <label class="form-label">Nik</label>
-                                        <input type="text" class="form-control form-control-lg" name="nik" value="<?php echo e($ceknik->nik ?? ''); ?>">
+                                        <input type="text" class="form-control form-control-lg" name="nik" value="<?php echo e($reqnik->nik ?? ''); ?>">
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Kontak Pasien</label>
-                                        <input type="text" class="form-control form-control-lg" name="no_hp" value="<?php echo e($ceknik->no_hp ?? ''); ?>">
+                                        <input type="text" class="form-control form-control-lg" name="no_hp" value="<?php echo e($reqnik->no_hp ?? ''); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -91,18 +88,16 @@
                                 <div class="row mb-4">
                                     <div class="col-6">
                                         <label class="form-label">Poli Klinik tujuan <span class="text-danger">*</span></label>
-                                        <select class="js-select2 form-select" name="loket" required style="width: 100%;" data-placeholder="Choose one..">
-                                            <option hidden value="<?php echo e($data->loket ?? ''); ?>"><?php echo e($data->loket); ?></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                            <option value="Loket A">Loket A</option>
-                                            <option value="Loket B">Loket B</option>
+                                        <select class="js-select2 form-select" name="loket" id="loket" required style="width: 100%;" data-placeholder="Choose one..">
+                                            <option hidden value="<?php echo e($data->loket ?? ''); ?>"><?php echo e($data->loket); ?></option>
+                                                <option value="A">Loket A</option>
+                                                <option value="B">loket B</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Klinik <span class="text-danger">*</span></label>
-                                        <select class="js-select2 form-select" name="poli_tujuan" required style="width: 100%;" data-placeholder="Choose one..">
-                                            <option hidden value="<?php echo e($data->poli_tujuan ?? ''); ?>"><?php echo e($data->poli_tujuan); ?></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                            <option value="Gigi">Gigi</option>
-                                            <option value="Anak">Anak</option>
+                                        <select class="js-select2 form-select" name="poli_tujuan" id="poli" required style="width: 100%;" data-placeholder="Choose one..">
+                                           
                                         </select>
                                     </div>
                                 </div>
@@ -137,6 +132,57 @@
             </div>
         </div>
     </div>
+
+    
+    <script src="<?php echo e(asset('code/assets/js/lib/jquery.min.js')); ?>"></script>
+    <script>
+        $(document).ready(function(){
+            $('#loket').on('change', function(){
+                var loket = $(this).val();
+                // console.log(loket);
+                if (loket) {
+                    $.ajax({
+                        url: '/loket/' + loket,
+                        type: 'GET',
+                        data: {
+                            '_token': '<?php echo e(csrf_token()); ?>'
+                        },
+                        dataType: 'json',
+                        success: function(data){
+                            // console.log(data);
+                            if (data) {
+                                $('#poli').empty();
+                                // $('#poli').append('<option value="">--pilih--</option>');
+                                $.each(data,function(key, poli){
+                                    $('select[name="poli_tujuan"]').append(
+                                        '<option value="' + poli.kode_poli + '">' +
+                                            poli.poli_tujuan + '</option>'
+                                    );
+                                    
+                                            
+                                        $('#poli').on('change', function(){
+                                            // var poli = $(this).val();
+                                            var dok = poli.poli_tujuan;
+                                            console.log(dok);
+                                        })
+
+                                });
+                            } else {
+                                $('#poli').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#loket').empty();
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        
+        
+    </script>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.dashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Hospital\resources\views/admin/daftar_pasien/create_step_two.blade.php ENDPATH**/ ?>

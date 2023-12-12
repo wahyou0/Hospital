@@ -52,11 +52,14 @@
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Rekam Medis/NIK <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="nik" value="{{ $data->nik ?? '' }}">
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">Tanggal Lahir <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}">
+                                            <input type="text" class="form-control @error('nik')
+                                                is-invalid
+                                                @enderror" name="nik" value="{{ $data->nik ?? '' }}">
+                                                @error('nik')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                         </div>
                                         <button type="submit" class="btn btn-alt-primary">
                                             <i class="fa fa-check opacity-50 me-1"></i> Lanjut

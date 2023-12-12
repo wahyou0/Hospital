@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>   
     
     <div class="block block-rounded">
@@ -24,11 +23,29 @@
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Rekam Medis/NIK <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="nik" value="<?php echo e($data->nik ?? ''); ?>">
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">Tanggal Lahir <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" name="tgl_lahir" value="<?php echo e($data->tgl_lahir ?? ''); ?>">
+                                            <input type="text" class="form-control <?php $__errorArgs = ['nik'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                is-invalid
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="nik" value="<?php echo e($data->nik ?? ''); ?>">
+                                                <?php $__errorArgs = ['nik'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                    <div class="invalid-feedback">
+                                                        <?php echo e($message); ?>
+
+                                                    </div>
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
                                         <button type="submit" class="btn btn-alt-primary">
                                             <i class="fa fa-check opacity-50 me-1"></i> Lanjut

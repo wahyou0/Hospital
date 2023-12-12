@@ -24,5 +24,6 @@ class daftar_pasien extends Model
         'tgl_kunjungan',
         'poli_tujuan',
         'dokter',
+        'konfirmasi',
     ];
 }

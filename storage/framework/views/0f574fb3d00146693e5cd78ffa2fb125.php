@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 
     <div class="block block-themed block-rounded">
@@ -17,12 +16,13 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 5%">No.</th>
-                            <th>Nama Ruangan</th>
-                            <th>Fasilitas</th>
-                            <th>Isi</th>
-                            <th>Kosong</th>
-                            <th>Jumlah Kamar</th>
-                            <th>Kelas</th>
+                            <th>No. Rekam Medis</th>
+                            <th>Nik</th>
+                            <th>Nama Pasien</th>
+                            <th>Tempat Tgl. Lahir</th>
+                            <th>Status</th>
+                            <th>Cara Bayar</th>
+                            <th>Unit Pelayanan</th>
                             <th class="text-center" style="width: 20%;">Aksi</th>
                         </tr>
                     </thead>
@@ -33,19 +33,20 @@
                         <?php $__currentLoopData = $daftar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
                             <td class="text-center"><?php echo e($no++); ?></td>
-                            <td class="fw-semibold"><?php echo e($data->nama_ruangan); ?></td>
-                            <td><?php echo e($data->fasilitas); ?></td>
-                            <td><?php echo e($data->isi); ?></td>
-                            <td><?php echo e($data->kososng); ?></td>
-                            <td><?php echo e($data->jumlah_kamar); ?></td>
-                            <td><?php echo e($data->kelas); ?></td>
+                            <td class="fw-semibold"><?php echo e($data->no_rekam_medis); ?></td>
+                            <td><?php echo e($data->nik); ?></td>
+                            <td><?php echo e($data->nama_pasien); ?></td>
+                            <td><?php echo e($data->tempat_lahir); ?> <?php echo e($data->tgl_lahir); ?></td>
+                            <td><?php echo e($data->jenis_pasien); ?></td>
+                            <td><?php echo e($data->cara_bayar); ?></td>
+                            <td><?php echo e($data->poli_tujuan); ?></td>
                             <td>
-                                <form action="<?php echo e(url('kamar-rawat/delete/'.$data->id)); ?>" method="POST">
+                                <form action="<?php echo e(url('data-pasien/delete/'.$data->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
                                     <a href="" class="btn btn-alt-info" data-bs-toggle="tooltip" title="View Data">
                                         <i class="fa fa-user"></i>
                                     </a>
-                                    <a class="btn btn-alt-success" href="<?php echo e(url('kamar-rawat/edit/'.$data->id)); ?>" data-bs-toggle="tooltip" title="Edit Data">
+                                    <a class="btn btn-alt-success" href="<?php echo e(url('data-pasien/edit/'.$data->id)); ?>" data-bs-toggle="tooltip" title="Edit Data">
                                         <i class="fa fa-pen-to-square"></i>
                                     </a>
                                     <input type="hidden" name="_method" value="DELETE">
