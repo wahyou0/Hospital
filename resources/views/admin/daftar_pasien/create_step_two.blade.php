@@ -135,10 +135,7 @@
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
                                 <label class="form-label">Dokter</label>
-                                <select class="js-select2 form-select" name="dokter" required style="width: 100%;" data-placeholder="Choose one..">
-                                    <option hidden value="{{ $data->dokter ?? '' }}">{{ $data->dokter }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                    <option value="Dokter A">Dokter A</option>
-                                    <option value="Dokter B">Dokter B</option>
+                                <select class="js-select2 form-select" name="dokter" id="dokt" required style="width: 100%;" data-placeholder="Choose one..">
                                 </select>
                             </div>
                         </div>
@@ -184,16 +181,41 @@
                                 // $('#poli').append('<option value="">--pilih--</option>');
                                 $.each(data,function(key, poli){
                                     $('select[name="poli_tujuan"]').append(
-                                        '<option value="' + poli.kode_poli + '">' +
+                                        '<option value="' + poli.poli_tujuan + '">' +
                                             poli.poli_tujuan + '</option>'
                                     );
                                     
                                             //untuk dropdown ke 3
-                                        // $('#poli').on('change', function(){
-                                        //     // var poli = $(this).val();
-                                        //     var dok = poli.poli_tujuan;
-                                        //     console.log(dok);
-                                        // })
+                                        $('#poli').on('change', function(){
+                                            var dok =  $(this).val();
+                                            // console.log(dok);
+                                            if (dok) {
+                                                $.ajax({
+                                                    url: '/klinik-dokter/' + dok,
+                                                    type: 'GET',
+                                                    data: {
+                                                        '_token': '{{ csrf_token() }}'
+                                                    },
+                                                    dataType: 'json',
+                                                    success: function(kunjung){
+                                                    // console.log(kunjung);
+                                                        if (kunjung) {
+                                                            $('#dokt').empty();
+                                                            $.each(kunjung,function(key, jadwal){
+                                                                $('select[name="dokter"]').append(
+                                                                '<option value="' + jadwal.dokter + '">' +
+                                                                    jadwal.dokter + '</option>'
+                                                                );
+                                                            });
+                                                        } else {
+                                                            $('#dokt').empty();
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                $('#poli').empty();
+                                            }
+                                        })
 
                                 });
                             } else {

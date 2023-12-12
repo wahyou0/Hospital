@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('pendaftaran-pasien/create-step-two', [DaftarPasienControlleer::class, 'createStepTwo']);
         //data json
         Route::get('loket/{id}', [DaftarPasienControlleer::class, 'getLoket']);
+        Route::get('klinik-dokter/{id}', [DaftarPasienControlleer::class, 'getDokter']);
 
         Route::get('pendaftaran-pasien/create-step-one-baru', [DaftarPasienControlleer::class, 'createStepOneBaru']);
         Route::post('pendaftaran-pasien/Post-step-one-baru', [DaftarPasienControlleer::class, 'postCreateStepOneBaru']);

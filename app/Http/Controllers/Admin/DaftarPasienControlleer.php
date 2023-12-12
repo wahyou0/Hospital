@@ -174,6 +174,13 @@ class DaftarPasienControlleer extends Controller
         return response()->json($poli);
     }
 
+    public function getDokter($id)
+    {
+        $jadwal = loket_option::where('poli_tujuan',$id)->get();
+        
+        return response()->json($jadwal);
+    }
+
     
 
     public function postCreateStepTwo(Request $request)
