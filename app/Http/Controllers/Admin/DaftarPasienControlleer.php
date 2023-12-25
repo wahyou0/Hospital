@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\daftar_pasien;
+use App\Models\jadwal_dokter;
 use App\Models\konfirmasi_pasien;
 use App\Models\loket_option;
+use App\Models\loket;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -124,7 +126,7 @@ class DaftarPasienControlleer extends Controller
 
 
         $ambilnik = $request->nik;
-        $reqnik = daftar_pasien::all()->where('nik',$ambilnik)->first();
+        $reqnik = konfirmasi_pasien::all()->where('nik',$ambilnik)->first();
         // dd($reqnik);
 
         if( $reqnik == null ) {
@@ -169,14 +171,14 @@ class DaftarPasienControlleer extends Controller
     //get data loket json
     public function getLoket($id)
     {
-        $poli = loket_option::where('kode_loket',$id)->get();
+        $poli = loket::where('kode_loket',$id)->get();
         
         return response()->json($poli);
     }
 
     public function getDokter($id)
     {
-        $jadwal = loket_option::where('poli_tujuan',$id)->get();
+        $jadwal = jadwal_dokter::where('spesialis',$id)->get();
         
         return response()->json($jadwal);
     }

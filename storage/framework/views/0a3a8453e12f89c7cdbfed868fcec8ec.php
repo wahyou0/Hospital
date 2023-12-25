@@ -20,8 +20,8 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="<?php echo e(asset('code/assets/media/favicons/favicon.png')); ?>">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo e(asset('code/assets/media/favicons/favicon-192x192.png')); ?>">
+    <link rel="shortcut icon" href="<?php echo e(asset('logo/logo_unhas.png')); ?>">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo e(asset('logo/logo_unhas')); ?>">
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo e(asset('code/assets/media/favicons/apple-touch-icon-180x180.png')); ?>">
     <!-- END Icons -->
 
@@ -34,6 +34,13 @@
 
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="<?php echo e(asset('code/assets/js/plugins/select2/css/select2.css')); ?>">
+
+    <!-- Page JS Plugins datetime picker -->
+    <link rel="stylesheet" href="<?php echo e(asset('code/assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('code/assets/js/plugins/select2/css/select2.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('code/assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('code/assets/js/plugins/dropzone/min/dropzone.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('code/assets/js/plugins/flatpickr/flatpickr.min.css')); ?>">
 
 
 
@@ -48,57 +55,6 @@
   </head>
 
   <body>
-    <!-- Page Container -->
-    <!--
-      Available classes for #page-container:
-
-      GENERIC
-
-        'remember-theme'                            Remembers active color theme and dark mode between pages using localStorage when set through
-                                                    - Theme helper buttons [data-toggle="theme"],
-                                                    - Layout helper buttons [data-toggle="layout" data-action="dark_mode_[on/off/toggle]"]
-                                                    - ..and/or Codebase.layout('dark_mode_[on/off/toggle]')
-
-      SIDEBAR & SIDE OVERLAY
-
-        'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-        'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-        'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-        'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-        'sidebar-dark'                              Dark themed sidebar
-
-        'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-        'side-overlay-o'                            Visible Side Overlay by default
-
-        'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-        'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-      HEADER
-
-        ''                                          Static Header if no class is added
-        'page-header-fixed'                         Fixed Header
-
-      HEADER STYLE
-
-        ''                                          Classic Header style if no class is added
-        'page-header-modern'                        Modern Header style
-        'page-header-dark'                          Dark themed Header (works only with classic Header style)
-        'page-header-glass'                         Light themed Header with transparency by default
-                                                    (absolute position, perfect for light images underneath - solid light background on scroll if the Header is also set as fixed)
-        'page-header-glass page-header-dark'        Dark themed Header with transparency by default
-                                                    (absolute position, perfect for dark images underneath - solid dark background on scroll if the Header is also set as fixed)
-
-      MAIN CONTENT LAYOUT
-
-        ''                                          Full width Main Content if no class is added
-        'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-        'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
-
-      DARK MODE
-
-        'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
-    -->
     <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed">
       <!-- Side Overlay-->
 
@@ -107,17 +63,7 @@
       <!-- END Side Overlay -->
 
       <!-- Sidebar -->
-      <!--
-        Helper classes
-
-        Adding .smini-hide to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
-        Adding .smini-show to an element will make it visible (opacity: 1) when the sidebar is in mini mode
-          If you would like to disable the transition, just add the .no-transition along with one of the previous 2 classes
-
-        Adding .smini-hidden to an element will hide it when the sidebar is in mini mode
-        Adding .smini-visible to an element will show it only when the sidebar is in mini mode
-        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
-      -->
+     
       
       
       <?php echo $__env->make('admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -185,6 +131,18 @@
 
     <!-- Page JS Code -->
     <script src="<?php echo e(asset('code/assets/js/pages/be_forms_validation.min.js')); ?>"></script>
+
+    
+    <script src="<?php echo e(asset('code/assets/js/plugins/pwstrength-bootstrap/pwstrength-bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('code/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('code/assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('code/assets/js/plugins/select2/js/select2.full.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('code/assets/js/plugins/masked-inputs/jquery.maskedinput.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('code/assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('code/assets/js/plugins/dropzone/min/dropzone.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('code/assets/js/plugins/flatpickr/flatpickr.min.js')); ?>"></script>
+    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Maxlength + Select2 + Ion Range Slider + Masked Inputs + Password Strength Meter plugins) -->
+    <script>Codebase.helpersOnLoad(['js-flatpickr', 'jq-datepicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider', 'jq-masked-inputs', 'jq-pw-strength']);</script>
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

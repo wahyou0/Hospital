@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Tanggal Lahir</label>
-                                        <input type="text" class="form-control form-control-lg" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}">
+                                        <input type="date" class="js-flatpickr form-control" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}">
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
                                 <label class="form-label">Tanggal Kunjungan<span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="tgl_kunjungan" value="{{ $data->tgl_kunjungan ?? '' }}">
+                                <input type="date" class="js-flatpickr form-control" name="tgl_kunjungan" value="{{ $data->tgl_kunjungan ?? '' }}">
                             </div>
                         </div>
                         <div class="row">
@@ -115,18 +115,16 @@
                                 <div class="row mb-4">
                                     <div class="col-6">
                                         <label class="form-label">Poli Klinik tujuan <span class="text-danger">*</span></label>
-                                        <select class="js-select2 form-select" name="loket" required style="width: 100%;" data-placeholder="Choose one..">
-                                            <option hidden value="{{ $data->loket ?? '' }}">{{ $data->loket }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                            <option value="Loket A">Loket A</option>
-                                            <option value="Loket B">Loket B</option>
+                                        <select class="js-select2 form-select" name="loket" id="loket" required style="width: 100%;" data-placeholder="Choose one..">
+                                            <option hidden value="{{ $data->loket ?? '' }}">{{ $data->loket }}</option>
+                                                <option value="A">Loket A</option>
+                                                <option value="B">loket B</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Klinik <span class="text-danger">*</span></label>
-                                        <select class="js-select2 form-select" name="poli_tujuan" required style="width: 100%;" data-placeholder="Choose one..">
-                                            <option hidden value="{{ $data->poli_tujuan ?? '' }}">{{ $data->poli_tujuan }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                            <option value="Gigi">Gigi</option>
-                                            <option value="Anak">Anak</option>
+                                        <select class="js-select2 form-select" name="poli_tujuan" id="poli" required style="width: 100%;" data-placeholder="Choose one..">
+                                           
                                         </select>
                                     </div>
                                 </div>
@@ -135,10 +133,7 @@
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
                                 <label class="form-label">Dokter</label>
-                                <select class="js-select2 form-select" name="dokter" required style="width: 100%;" data-placeholder="Choose one..">
-                                    <option hidden value="{{ $data->dokter ?? '' }}">{{ $data->dokter }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                    <option value="Dokter A">Dokter A</option>
-                                    <option value="Dokter B">Dokter B</option>
+                                <select class="js-select2 form-select" name="dokter" id="dokt" required style="width: 100%;" data-placeholder="Choose one..">
                                 </select>
                             </div>
                         </div>
@@ -161,5 +156,76 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('code/assets/js/lib/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#loket').on('change', function(){
+                var loket = $(this).val();
+                // console.log(loket);
+                if (loket) {
+                    $.ajax({
+                        url: '/loket/' + loket,
+                        type: 'GET',
+                        data: {
+                            '_token': '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function(data){
+                            // console.log(data);
+                            if (data) {
+                                $('#poli').empty();
+                                $('#poli').append('<option value="">--pilih--</option>');
+                                $.each(data,function(key, poli){
+                                    $('select[name="poli_tujuan"]').append(
+                                        '<option value="' + poli.poli_tujuan + '">' +
+                                            poli.poli_tujuan + '</option>'
+                                    );
+                                    
+                                            //untuk dropdown ke 3
+                                        $('#poli').on('change', function(){
+                                            var dok =  $(this).val();
+                                            // console.log(dok);
+                                            if (dok) {
+                                                $.ajax({
+                                                    url: '/klinik-dokter/' + dok,
+                                                    type: 'GET',
+                                                    data: {
+                                                        '_token': '{{ csrf_token() }}'
+                                                    },
+                                                    dataType: 'json',
+                                                    success: function(kunjung){
+                                                    // console.log(kunjung);
+                                                        if (kunjung) {
+                                                            $('#dokt').empty();
+                                                            $('#dokt').append('<option value="">--pilih--</option>');
+                                                            $.each(kunjung,function(key, jadwal){
+                                                                $('select[name="dokter"]').append(
+                                                                '<option value="' + jadwal.jadwal + '">' +
+                                                                    jadwal.jadwal + '</option>'
+                                                                );
+                                                            });
+                                                        } else {
+                                                            $('#dokt').empty();
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                $('#poli').empty();
+                                            }
+                                        })
+
+                                });
+                            } else {
+                                $('#poli').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#loket').empty();
+                }
+            });
+        });
+    </script>
 
 @endsection

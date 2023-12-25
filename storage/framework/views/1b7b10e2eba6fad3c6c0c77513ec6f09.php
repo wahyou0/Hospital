@@ -8,12 +8,8 @@
           <span class="smini-visible fw-bold tracking-wide fs-lg">
             c<span class="text-primary">b</span>
           </span>
-          <a class="link-fx fw-bold tracking-wide mx-auto" href="index.html">
-            <span class="smini-hidden">
-              <i class="fa fa-briefcase-medical text-primary"></i>
-              <span class="fs-4 text-dual">HOS</span><span class="fs-4 text-primary">PITAL</span>
-            </span>
-          </a>
+              <img src="<?php echo e(asset('/logo/logo_unhas.png')); ?>" alt="" style="width: 9mm; position:center">
+              <span class="fs-3 text-dual fw-bold">HOS</span><span class="fs-3 text-primary fw-bold">PITAL</span>
         </div>
         <!-- END Logo -->
 
@@ -47,7 +43,7 @@
             </a>
             <ul class="list-inline mt-3 mb-0">
               <li class="list-inline-item">
-                <a class="link-fx text-dual fs-sm fw-semibold text-uppercase" href="be_pages_generic_profile.html"><?php echo e(Auth::user()->username); ?></a>
+                <a class="link-fx text-dual fs-sm fw-semibold text-uppercase" href="be_pages_generic_profile.html"><?php echo e(Auth::user()->name); ?></a>
               </li>
               <li class="list-inline-item">
                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -67,6 +63,12 @@
         <!-- END Side User -->
 
         <!-- Side Navigation -->
+        <?php
+          $a = Auth::user()->level ;
+        ?>
+        <?php if( $a == '1' ): ?>
+          
+ 
         <div class="content-side content-side-full">
           <ul class="nav-main">
             <li class="nav-main-item">
@@ -112,15 +114,67 @@
                 </a>
             </li>
             <li class="nav-main-item">
-                <a class="nav-main-link" href="#">
-                  <i class="nav-main-link-icon fa fa-id-card"></i>
-                  <span class="nav-main-link-name">Daftar Dokter</span>
+                <a class="nav-main-link" href="<?php echo e(url('loket')); ?>">
+                  <i class="nav-main-link-icon fa fa-list"></i>
+                  <span class="nav-main-link-name">Loket</span>
                 </a>
             </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link" href="<?php echo e(url('report')); ?>">
+                  <i class="nav-main-link-icon fa fa-file-lines"></i>
+                  <span class="nav-main-link-name">Report Pasien</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link" href="<?php echo e(url('auth')); ?>">
+                  <i class="nav-main-link-icon fa fa-user"></i>
+                  <span class="nav-main-link-name">Auth</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+              <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                <i class="nav-main-link-icon fa fa-user-lock"></i>
+                <span class="nav-main-link-name">Register</span>
+              </a>
+              <ul class="nav-main-submenu">
+                <li class="nav-main-item">
+                  <a class="nav-main-link" href="<?php echo e(url('register')); ?>">
+                    <span class="nav-main-link-name">Admin</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link" href="<?php echo e(url('register-dokter')); ?>">
+                    <span class="nav-main-link-name">Dokter</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
+            <?php elseif($a == '2'): ?>
 
+              <div class="content-side content-side-full">
+                <ul class="nav-main">
+                  <li class="nav-main-item">
+                    <a class="nav-main-link" href="<?php echo e(url('home-dokter')); ?>">
+                      <i class="nav-main-link-icon fa fa-house-user"></i>
+                      <span class="nav-main-link-name">Dashboard</span>
+                    </a>
+                  </li>
+                  
+                  <li class="nav-main-item">
+                      <a class="nav-main-link" href="<?php echo e(url('daftar-pasien-dokter')); ?>">
+                        <i class="nav-main-link-icon fa fa-id-card"></i>
+                        <span class="nav-main-link-name">Pasien</span>
+                      </a>
+                  </li>
+                  <li class="nav-main-item">
+                      <a class="nav-main-link" href="<?php echo e(url('jadwal')); ?>">
+                        <i class="nav-main-link-icon fa fa-book-medical"></i>
+                        <span class="nav-main-link-name">Jadwal Dokter</span>
+                      </a>
+                  </li>
 
-            
+            <?php endif; ?>
 
           </ul>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\loket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,7 @@ class AuthController extends Controller
             if ($user->level == '1') {
                 return redirect()->intended('home');
             } elseif ($user->level == '2') {
-                return redirect()->intended('jadwal-dokter');
+                return redirect()->intended('home-dokter');
             }
         }
 
@@ -44,7 +45,7 @@ class AuthController extends Controller
             if ($user->level == '1') {
                 return redirect()->intended('home');
             } elseif ($user->level == '2') {
-                return redirect()->intended('kegiatan');
+                return redirect()->intended('home-dokter');
             }
 
             return redirect()->intended('/');
@@ -60,7 +61,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function register(Request $request) 
@@ -99,7 +100,110 @@ class AuthController extends Controller
             'password' => Hash::make($request['password']),
             'level' => $request['level'],
         ]);
-        return redirect('/home')->with('succes', 'Registrasi Admin Berhasil');
+
+        $kredensial = $request->only('username','password');
+
+        if(Auth::attempt($kredensial)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+            // dd($user->level);
+            if ($user->level == '1') {
+                return redirect()->intended('home');
+            } elseif ($user->level == '2') {
+                return redirect()->intended('home-dokter');
+            }
+
+            return redirect()->intended('/');
+        }
+    }
+
+    public function registerDokter()
+    {
+        $data = loket::all();
+        return view('admin.register_dokter', compact('data'));
+    }
+
+    public function createDokter(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'spesialis' => 'required',
+            'username' => 'required|unique:users,username',
+            'image' => 'mimes:png,jpg,jpeg|image|max:10048',
+            'password' => 'required|min:6',
+        ],
+            [
+                'name.required' => 'Nama Lengkap tidak boleh kosong',
+                'spesialis.required' => 'Spesialis tidak boleh kosong',
+                'username.required' => 'Username tidak boleh kosong',
+                'username.unique' => 'Username sudah terdaftar gunakan username yang lain',  
+                'password.required' => 'password tidak boleh kosong',
+                'password.min' => 'password minimal 6 karakter',
+                
+            ],  
+        );
+
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('uploads');
+        }else{
+            $path = '';
+        }
+
+        dd($request);
+
+        User::create([
+            'name' => $request['name'],
+            'spesialis' => $request['spesialis'],
+            'username' => $request['username'],
+            'image' => $path,
+            'password' => Hash::make($request['password']),
+            'level' => $request['level'],
+        ]);
+
+        $kredensial = $request->only('username','password');
+
+        if(Auth::attempt($kredensial)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+            // dd($user->level);
+            if ($user->level == '1') {
+                return redirect()->intended('home');
+            } elseif ($user->level == '2') {
+                return redirect()->intended('home-dokter');
+            }
+
+            return redirect()->intended('/');
+        }
+    }
+
+    public function list()
+    {
+        $list = user::all();
+
+        return view('admin.auth.index', compact('list'));
+    }
+
+    public function edit(string $id)
+    {
+        $data = user::find($id);
+        $loket = loket::all();
+
+        return view('admin.auth.edit', compact('loket','data'));
+    }
+
+    public function update(Request $request)
+    {
+        dd($request);
+    }
+
+    public function destroy(string $id)
+    {
+        $data = user::find($id);
+        if ($data->delete()) {
+            return redirect('/auth')->with('success', 'Data Telah di Hapus');
+        } else {
+            return back()->with(['gagal', 'Hapus Data Gagal']);
+        }
     }
 
 }

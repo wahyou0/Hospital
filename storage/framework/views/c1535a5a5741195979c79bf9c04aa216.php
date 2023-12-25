@@ -134,11 +134,6 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                       </div>
                     </div>
-                    <div class="block-content block-content-full bg-body-light text-center d-flex justify-content-between">
-                      <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block" href="<?php echo e(url('register')); ?>">
-                        <i class="fa fa-plus opacity-50 me-1"></i> Buat Akun
-                      </a>
-                    </div>
                   </div>
                 </form>
                 <!-- END Sign In Form -->

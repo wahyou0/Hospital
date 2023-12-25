@@ -94,10 +94,17 @@
           <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0" aria-labelledby="page-header-user-dropdown">
             <div class="px-2 py-3 bg-body-light rounded-top">
               <h5 class="h6 text-center mb-0">
-                John Smith
+                @php
+                  $a = Auth::user()->level;
+                @endphp
+                @if ($a == '1')
+                  Admin
+                @else
+                  Dokter
+                @endif
               </h5>
             </div>
-            <div class="p-2">
+            {{-- <div class="p-2">
               <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="be_pages_generic_profile.html">
                 <span>Profile</span>
                 <i class="fa fa-fw fa-user opacity-25"></i>
@@ -125,13 +132,13 @@
                 <span>Sign Out</span>
                 <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
               </a>
-            </div>
+            </div> --}}
           </div>
         </div>
         <!-- END User Dropdown -->
 
         <!-- Notifications -->
-        <div class="dropdown d-inline-block">
+        {{-- <div class="dropdown d-inline-block">
           <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-notifications" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-flag"></i>
             <span class="text-primary">&bull;</span>
@@ -205,7 +212,7 @@
               </a>
             </div>
           </div>
-        </div>
+        </div> --}}
         <!-- END Notifications -->
 
         <!-- Toggle Side Overlay -->

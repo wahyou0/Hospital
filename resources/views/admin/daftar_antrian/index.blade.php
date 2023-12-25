@@ -18,6 +18,7 @@
                             <th>No. Rekam Medis</th>
                             <th>Nik</th>
                             <th>Nama Pasien</th>
+                            <th>Tanggal Kunjungan</th>
                             <th>Jenis</th>
                             <th>Cara Bayar</th>
                             <th>Unit Pelayanan</th>
@@ -36,6 +37,7 @@
                             <td class="fw-semibold">{{ $data->no_rekam_medis }}</td>
                             <td>{{ $data->nik }}</td>
                             <td>{{ $data->nama_pasien }}</td>
+                            <td>{{ $data->tgl_kunjungan }}</td>
                             <td>{{ $data->jenis_pasien }}</td>
                             <td>{{ $data->cara_bayar }}</td>
                             <td>{{ $data->poli_tujuan }}</td>

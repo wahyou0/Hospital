@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\jadwal_dokter;
+use App\Models\loket;
+use App\Models\User;
+use App\Models\loket_option;
 
 class JadwalDokterController extends Controller
 {
@@ -19,14 +22,21 @@ class JadwalDokterController extends Controller
     
     public function create()
     {
-        return view('admin.jadwal_dokter.create');
+        $data = loket::all();
+        $dokter = user::all()->where('level','2');
+        // dd($dokter);
+        return view('admin.jadwal_dokter.create', compact('data','dokter'));
     }
 
     
     public function store(Request $request)
     {
         $model = $request->all();
-        // dd($model);
+
+        // $data = new loket_option();
+        // $data->poli_tujuan = $request->spesialis;
+        // $data->save();
+        // dd($data);
 
         jadwal_dokter::create($model);
         return redirect('/jadwal-dokter')->with('success', 'Jadwal dokter berhsasil ditambah');
@@ -42,8 +52,10 @@ class JadwalDokterController extends Controller
     public function edit(string $id)
     {
         $data = jadwal_dokter::find($id);
+        $loket = loket::all();
+        $dokter = user::all()->where('level','2');
         
-        return view('admin.jadwal_dokter.edit', compact('data'));
+        return view('admin.jadwal_dokter.edit', compact('data','loket','dokter'));
     }
 
     

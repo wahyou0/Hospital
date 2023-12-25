@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>   
     
     <div class="block block-rounded">
@@ -32,7 +31,7 @@
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Tanggal Lahir <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" name="tgl_lahir" value="<?php echo e($data->tgl_lahir ?? ''); ?>">
+                                            <input type="date" class="js-flatpickr form-control" id="example-flatpickr-custom" name="tgl_lahir" value="<?php echo e($data->tgl_lahir ?? ''); ?>">
                                         </div>
                                         <button type="submit" class="btn btn-alt-primary">
                                             <i class="fa fa-check opacity-50 me-1"></i> Lanjut

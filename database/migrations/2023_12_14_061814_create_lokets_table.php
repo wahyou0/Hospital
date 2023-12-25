@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('loket_options', function (Blueprint $table) {
+        Schema::create('loket', function (Blueprint $table) {
             $table->id();
             $table->string('kode_loket', 2)->nullable();
-            $table->string('loket', 10)->nullable();
-            $table->string('poli_tujuan', 30)->nullable();
-            $table->string('dokter', 80)->nullable();
+            $table->string('poli_tujuan', 70)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('loket_options');
+        Schema::dropIfExists('loket');
     }
 };

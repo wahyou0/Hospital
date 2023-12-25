@@ -16,12 +16,22 @@
                             <div class="col-lg-8 col-xl-10">
                                 <input type="hidden" name="id" value="{{ $data->id }}">
                                 <div class="mb-4">
-                                    <label class="form-label">Nama Dokter</label>
-                                    <input type="text" class="form-control" name="nama_dokter" value="{{ $data->nama_dokter}}">
+                                    <label class="form-label">Nama Dokter <span class="text-danger">*</span></label>
+                                    <select class="js-select2 form-select" name="nama_dokter" required style="width: 100%;" data-placeholder="Choose one..">
+                                        <option hidden value="{{ $data->nama_dokter }}">{{ $data->nama_dokter }}</option>
+                                        @foreach ($dokter as $item )
+                                            <option value={{ $item->name }}>{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Spesialis</label>
-                                    <input type="text" class="form-control" name="spesialis" value="{{ $data->spesialis}}">
+                                    <label class="form-label">Spesialis <span class="text-danger">*</span></label>
+                                    <select class="js-select2 form-select" name="spesialis" required style="width: 100%;" data-placeholder="Choose one..">
+                                        <option hidden value="{{ $data->spesialis }}">{{ $data->spesialis }}</option>
+                                        @foreach ($loket as $item )
+                                            <option value={{ $item->poli_tujuan }}>{{ $item->poli_tujuan }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Jadwal</label>

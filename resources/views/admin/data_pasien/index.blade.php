@@ -9,8 +9,6 @@
         </div>
         <div class="block-content block-content-full">
             <div class="table-responsive">
-                <a href="{{ url('pendaftaran-pasien/create-step-one')}}" class="btn btn-alt-success"><i class="far fa-square-plus"></i> Tambah Pasien Lama</a>
-                <a href="{{ url('kamar-rawat/create')}}" class="btn btn-alt-success"><i class="far fa-square-plus"></i> Tambah Pasien Baru</a>
                 <a href="{{ url('pendaftaran-pasien/cek')}}" class="btn btn-alt-success"><i class="far fa-square-plus"></i> Tambah</a>
                 <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">

@@ -8,10 +8,13 @@ use App\Http\Controllers\Admin\JadwalDokterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KamarRawatController;
 use App\Http\Controllers\Admin\LayananController;
+use App\Http\Controllers\Admin\LoketController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\DaftarAntrianController;
-use App\Http\Controllers\TesController;
-use App\Livewire\Wizard;
-use App\Livewire\MultiStepFormWizard;
+use App\Http\Controllers\dokter\HomeController;
+use App\Http\Controllers\User\DashboardControllor;
+use App\Http\Controllers\User\PasienDaftarController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,37 +27,37 @@ use App\Livewire\MultiStepFormWizard;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
-
 // Route::get('/', function () {
-//     return view('default');
+//     return view('user.home');
 // });
 
-// Route::get('products', 'TesController@index')->name('products.index');
-Route::get('products', [TesController::class, 'index']);
-
-// Route::get('products/create-step-one', 'TesController@createStepOne')->name('products.create.step.one');
-// Route::post('products/create-step-one', 'TesController@postCreateStepOne')->name('products.create.step.one.post');
-
-// Route::get('products/create-step-two', 'TesController@createStepTwo')->name('products.create.step.two');
-// Route::post('products/create-step-two', 'TesController@postCreateStepTwo')->name('products.create.step.two.post');
-
-// Route::get('products/create-step-three', 'TesController@createStepThree')->name('products.create.step.three');
-// Route::post('products/create-step-three', 'TesController@postCreateStepThree')->name('products.create.step.three.post');
-
-Route::get('tes', [TesController::class, 'coba']);
-// Route::post('products/create', [TesController::class, 'postCreateStepOne']);
-
-// Route::get('products/create-step-two', [TesController::class, 'createStepTwo']);
-// Route::post('products/post-step-two', [TesController::class, 'postCreateStepTwo']);
-
-// Route::get('products/create-step-three', [TesController::class, 'createStepThree']);
-// Route::post('products/post-step-three', [TesController::class, 'postCreateStepThree']);
 
 
-// Route::get('tes', [Wizard::class, 'render']);
+Route::get('/', [DashboardControllor::class, 'index']);
+
+Route::get('layanan-hospital', [DashboardControllor::class, 'layanan']);
+Route::get('daftar-jadwal-dokter', [DashboardControllor::class, 'dokter']);
+Route::get('info-kamar-rawat', [DashboardControllor::class, 'kamar']);
+
+Route::get('pasien-daftar', [PasienDaftarController::class, 'index']);
+Route::get('pasien-daftar/create-step-one', [PasienDaftarController::class, 'createStepOneLama']);
+Route::post('pasien-daftar/Post-step-one', [PasienDaftarController::class, 'postCreateStepOneLama']);
+Route::get('pasien-daftar/create-step-two', [PasienDaftarController::class, 'createStepTwo']);
+//data json
+Route::get('poli/{id}', [PasienDaftarController::class, 'getLoket']);
+Route::get('kunjungan/{id}', [PasienDaftarController::class, 'getDokter']);
+
+Route::get('pasien-daftar/create-step-one-baru', [PasienDaftarController::class, 'createStepOneBaru']);
+Route::post('pasien-daftar/Post-step-one-baru', [PasienDaftarController::class, 'postCreateStepOneBaru']);
+Route::get('pasien-daftar/create-step-two-baru', [PasienDaftarController::class, 'createStepTwoBaru']);
+
+Route::post('pasien-daftar/post-step-two', [PasienDaftarController::class, 'postCreateStepTwo']);
+Route::get('pasien-daftar/create-step-three', [PasienDaftarController::class, 'createStepThree']);
+Route::post('pasien-daftar/post-step-three', [PasienDaftarController::class, 'postCreateStepThree']);
+
+Route::get('download-pdf', [PasienDaftarController::class, 'view_pdf']);
+Route::get('bukti-registrasi', [PasienDaftarController::class, 'bukti']);
+
 
 Route::controller(AuthController::class)->group(function (){
     Route::get('login', 'index')->name('login');
@@ -62,6 +65,8 @@ Route::controller(AuthController::class)->group(function (){
     Route::get('logout', 'logout');
     Route::get('register', 'register');
     Route::post('register/create', 'create');
+    Route::get('register-dokter', 'registerDokter');
+    Route::post('register-dokter/create', 'createDokter');
 });
 
 Route::group(['middleware' => ['auth']], function (){
@@ -114,8 +119,31 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('daftar-antrian/edit/{id}', [DaftarAntrianController::class, 'edit']);
         Route::post('daftar-antrian/update', [DaftarAntrianController::class, 'update']);
 
-        
+        Route::get('loket', [LoketController::class, 'index']);
+        Route::get('loket-tambah', [LoketController::class, 'create']);
+        Route::post('loket/store', [LoketController::class, 'store']);
+        Route::get('loket/edit/{id}', [LoketController::class, 'edit']);
+        Route::post('loket/update', [LoketController::class, 'update']);
+        Route::delete('loket/delete/{id}', [LoketController::class, 'destroy']);
 
+
+        Route::get('auth', [AuthController::class, 'list']);
+        Route::get('auth/edit/{id}', [AuthController::class, 'edit']);
+        Route::post('auth/update', [AuthController::class, 'update']);
+        Route::delete('auth/delete/{id}', [AuthController::class, 'destroy']);
+
+        Route::get('report', [ReportController::class, 'index']);
+    });
+
+    Route::group(['middleware' => ['CekUser:2']], function () {
+
+        Route::get('home-dokter', [HomeController::class, 'index']);
+        
+        Route::get('jadwal', [HomeController::class, 'JadwalDokter']);
+
+        Route::get('daftar-pasien-dokter', [HomeController::class, 'DaftarPasien']);
+
+       
     });
 });
 

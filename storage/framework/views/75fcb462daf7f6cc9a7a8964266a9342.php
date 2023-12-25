@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Tanggal Lahir</label>
-                                            <input type="text" class="form-control form-control-lg" name="tgl_lahir" value="<?php echo e($reqnik->tgl_lahir); ?>">
+                                            <input type="date" class="js-flatpickr form-control" name="tgl_lahir" value="<?php echo e($reqnik->tgl_lahir); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
                                 <label class="form-label">Tanggal Kunjungan<span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="tgl_kunjungan" value="<?php echo e($data->tgl_kunjungan ?? ''); ?>">
+                                <input type="date" class="js-flatpickr form-control" name="tgl_kunjungan" value="<?php echo e($data->tgl_kunjungan ?? ''); ?>">
                             </div>
                         </div>
                         <div class="row">
@@ -149,7 +149,7 @@
                             // console.log(data);
                             if (data) {
                                 $('#poli').empty();
-                                // $('#poli').append('<option value="">--pilih--</option>');
+                                $('#poli').append('<option value="">--pilih--</option>');
                                 $.each(data,function(key, poli){
                                     $('select[name="poli_tujuan"]').append(
                                         '<option value="' + poli.poli_tujuan + '">' +
@@ -172,10 +172,11 @@
                                                     // console.log(kunjung);
                                                         if (kunjung) {
                                                             $('#dokt').empty();
+                                                            $('#dokt').append('<option value="">--pilih--</option>');
                                                             $.each(kunjung,function(key, jadwal){
                                                                 $('select[name="dokter"]').append(
-                                                                '<option value="' + jadwal.dokter + '">' +
-                                                                    jadwal.dokter + '</option>'
+                                                                '<option value="' + jadwal.jadwal + '">' +
+                                                                    jadwal.jadwal + '</option>'
                                                                 );
                                                             });
                                                         } else {
@@ -199,11 +200,6 @@
                 }
             });
         });
-    </script>
-    
-    <script>
-        
-        
     </script>
 
 <?php $__env->stopSection(); ?>

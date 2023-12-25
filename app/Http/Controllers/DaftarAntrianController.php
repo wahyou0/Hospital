@@ -10,6 +10,7 @@ class DaftarAntrianController extends Controller
     public function index()
     {
         $antrian = daftar_pasien::all()->where('konfirmasi','belum dipanggil');
+        
         return view('admin.daftar_antrian.index', compact('antrian'));
     }
 
