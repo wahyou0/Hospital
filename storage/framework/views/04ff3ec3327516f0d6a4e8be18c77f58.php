@@ -113,6 +113,10 @@
 					<td class="fw-semibold"><?php echo e($data->no_registrasi); ?></td>
 				</tr>
 				<tr class="item">
+					<td>Loket</td>
+					<td class="fw-semibold">Loket <?php echo e($data->loket); ?> </td>
+				</tr>
+				<tr class="item">
 					<td>Nomor Antrian</td>
 					<td class="fw-semibold"> <?php echo e($data->no_antrian); ?> </td>
 				</tr>

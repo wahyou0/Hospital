@@ -34,8 +34,8 @@ class PasienDaftarController extends Controller
             'nama_pasien' => 'required',
         ],
             [
-                'nik.required' => 'NIK tidak boleh Kosong',
-                'nama_pasien.required' => 'Nama Pasien tidak boleh kosong',
+                'nik.required' => 'NIK cannot be empty',
+                'nama_pasien.required' => 'Patient Name cannot be empty',
                 
             ],  
         );
@@ -127,7 +127,7 @@ class PasienDaftarController extends Controller
 
         if( $reqnik == null ) {
             return back()->withErrors([
-                'nik' => 'NIK anda belum terdaftar pilih pasien baru',
+                'nik' => 'Your NIK has not been registered. Select a new patient',
             ]);
         }else {
             if(empty($request->session()->get('data'))){
@@ -222,47 +222,27 @@ class PasienDaftarController extends Controller
     	$validatedData = $request->validate([
             'loket' => 'required',
             'nama_pasien' => 'required',
+            'jkl_pasien' => 'required',
             'nik' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
             'no_hp' => 'required',
             'cara_bayar' => 'required',
-            'tgl_kunjungan' => 'required',
-            'poli_tujuan' => 'required', //bisa kosong
-            'dokter' => 'required',
+            'tgl_kunjungan' => 'required'
         ]);
-
+        
+        $data = new daftar_pasien();
         $data = $request->session()->get('data');
         $data->fill($validatedData);
+        $data->poli_tujuan = $request['poli_tujuan'];
+        $data->dokter = $request['dokter'];
+        $data->no_rekam_medis = $request['no_rekam_medis'];
         // $data->dokter = $request->dokter;
         $data->no_antrian = $uantri;
         $data->no_registrasi = $nomer;
         $request->session()->put('data', $data);
         // dd($data);
 
-        return redirect('pasien-daftar/create-step-three');
-    }
-
-    public function createStepThree(Request $request)
-    {
-        $data = $request->session()->get('data');
-
-        return view('user.daftar.create_step_three',compact('data'));
-    }
-
-    public function view_pdf(Request $request)
-    {
-        $data = $request->session()->get('data');
-     
-        $pdf = Pdf::loadView('pdf', ['data' => $data]);
-     
-        return $pdf->download('antrian.pdf'); 
-
-    }
-
-    public function postCreateStepThree(Request $request)
-    {
-    	$data = $request->session()->get('data');
         $data->konfirmasi = 'belum dipanggil';
 
         $nik = $data->nik;
@@ -275,6 +255,7 @@ class PasienDaftarController extends Controller
             $pasien->loket          = $data->loket;
             $pasien->jenis_pasien   = $data->jenis_pasien;
             $pasien->nama_pasien    = $data->nama_pasien;
+            $pasien->jkl_pasien     = $data->jkl_pasien;
             $pasien->nik            = $data->nik;
             $pasien->no_rekam_medis = $data->no_rekam_medis;
             $pasien->tempat_lahir   = $data->tempat_lahir;
@@ -294,6 +275,7 @@ class PasienDaftarController extends Controller
             $pasien->loket          = $data->loket;
             $pasien->jenis_pasien   = $data->jenis_pasien;
             $pasien->nama_pasien    = $data->nama_pasien;
+            $pasien->jkl_pasien     = $data->jkl_pasien;
             $pasien->nik            = $data->nik;
             $pasien->no_rekam_medis = $data->no_rekam_medis;
             $pasien->tempat_lahir   = $data->tempat_lahir;
@@ -307,9 +289,34 @@ class PasienDaftarController extends Controller
             $pasien->save();
         }
 
-        // dd($data);
         $data->save();
+
+        return redirect('pasien-daftar/create-step-three');
+    }
+
+    public function createStepThree(Request $request)
+    {
+        $data = $request->session()->get('data');
+
+        return view('user.daftar.create_step_three',compact('data'));
+    }
+
+    public function view_pdf(Request $request)
+    {
+        $data = $request->session()->get('data');
+     
+        $pdf = Pdf::loadView('pdf', ['data' => $data]);
         $request->session()->forget('data');
+     
+        return $pdf->download('antrian.pdf'); 
+
+    }
+
+    public function postCreateStepThree(Request $request)
+    {
+    	$data = $request->session()->get('data');
+        
+        
 
         return redirect('/');
     }    

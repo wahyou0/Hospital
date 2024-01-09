@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('loket', 20)->nullable();
             $table->string('jenis_pasien', 20)->nullable();
             $table->string('nama_pasien')->nullable();
+            $table->string('jkl_pasien', 30)->nullable();
             $table->string('nik', 50)->nullable();
             $table->string('no_rekam_medis', 100)->nullable();
             $table->string('tempat_lahir')->nullable();

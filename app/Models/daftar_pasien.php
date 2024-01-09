@@ -15,6 +15,7 @@ class daftar_pasien extends Model
         'loket',
         'jenis_pasien',
         'nama_pasien',
+        'jkl_pasien',
         'nik',
         'no_rekam_medis',
         'tempat_lahir',
@@ -25,5 +26,6 @@ class daftar_pasien extends Model
         'poli_tujuan',
         'dokter',
         'konfirmasi',
+        'pelayanan'
     ];
 }

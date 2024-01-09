@@ -16,7 +16,6 @@
                             <th>Loket</th>
                             <th>No. Antrian</th>
                             <th>No. Rekam Medis</th>
-                            <th>Nik</th>
                             <th>Nama Pasien</th>
                             <th>Tanggal Kunjungan</th>
                             <th>Jenis</th>
@@ -32,10 +31,9 @@
                         @endphp
                         @foreach ($antrian as $data)
                         <tr>
-                            <td>{{ $data->loket }}</td>
+                            <td>Loket {{ $data->loket }}</td>
                             <td>{{ $data->no_antrian}}</td>
                             <td class="fw-semibold">{{ $data->no_rekam_medis }}</td>
-                            <td>{{ $data->nik }}</td>
                             <td>{{ $data->nama_pasien }}</td>
                             <td>{{ $data->tgl_kunjungan }}</td>
                             <td>{{ $data->jenis_pasien }}</td>

@@ -6,7 +6,8 @@ use App\Models\loket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\user;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -31,8 +32,8 @@ class AuthController extends Controller
             'password' => 'required',
         ],
             [
-                'username.required' => 'Username tidak boleh kosong',
-                'password.required' => 'Password tidak boleh kosong',
+                'username.required' => 'Username cannot be empty',
+                'password.required' => 'password cannot be empty',
             ]    
         );
 
@@ -78,11 +79,11 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ],
             [
-                'name.required' => 'Nama Lengkap tidak boleh kosong',
-                'username.required' => 'Username tidak boleh kosong',
-                'username.unique' => 'Username sudah terdaftar gunakan username yang lain',  
-                'password.required' => 'password tidak boleh kosong',
-                'password.min' => 'password minimal 6 karakter',
+                'name.required' => 'Full Name cannot be empty',
+                'username.required' => 'Username cannot be empty',
+                'username.unique' => 'Username already registered, use another username',  
+                'password.required' => 'password cannot be empty',
+                'password.min' => 'Password must be at least 6 characters',
                 
             ],  
         );
@@ -133,12 +134,12 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ],
             [
-                'name.required' => 'Nama Lengkap tidak boleh kosong',
+                'name.required' => 'Full Name cannot be empty',
                 'spesialis.required' => 'Spesialis tidak boleh kosong',
-                'username.required' => 'Username tidak boleh kosong',
-                'username.unique' => 'Username sudah terdaftar gunakan username yang lain',  
-                'password.required' => 'password tidak boleh kosong',
-                'password.min' => 'password minimal 6 karakter',
+                'username.required' => 'Username cannot be empty',
+                'username.unique' => 'Username already registered, use another username',  
+                'password.required' => 'password cannot be empty',
+                'password.min' => 'Password must be at least 6 characters',
                 
             ],  
         );
@@ -178,14 +179,14 @@ class AuthController extends Controller
 
     public function list()
     {
-        $list = user::all();
+        $list = User::all();
 
         return view('admin.auth.index', compact('list'));
     }
 
     public function edit(string $id)
     {
-        $data = user::find($id);
+        $data = User::find($id);
         $loket = loket::all();
 
         return view('admin.auth.edit', compact('loket','data'));
@@ -198,11 +199,16 @@ class AuthController extends Controller
 
     public function destroy(string $id)
     {
-        $data = user::find($id);
+        $data = User::find($id);
+        $pathfoto = $data->image;
+
+        if ($pathfoto != null || $pathfoto != '') {
+            Storage::delete($pathfoto);
+        }
         if ($data->delete()) {
-            return redirect('/auth')->with('success', 'Data Telah di Hapus');
+            return redirect('/auth')->with('success', 'This data has been successfully deleted');
         } else {
-            return back()->with(['gagal', 'Hapus Data Gagal']);
+            return back()->with(['gagal', 'Failed to delete']);
         }
     }
 

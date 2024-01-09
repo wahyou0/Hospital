@@ -4,7 +4,7 @@
     <div class="block block-themed block-rounded">
         <div class="block-header bg-gd-sea">
             <h3 class="block-title">
-                Tabel <small>Jadwal Dokter</small>
+                Table <small>User lis</small>
             </h3>
         </div>
         <div class="block-content block-content-full">
@@ -14,11 +14,11 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 5%">No.</th>
-                            <th>Nama Lengkap</th>
+                            <th>Full name</th>
                             <th>Username</th>
-                            <th>Spesialis</th>
+                            <th>Specialist</th>
                             <th>Image</th>
-                            <th class="text-center" style="width: 7%;">Aksi</th>
+                            <th class="text-center" style="width: 5%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,7 @@
                                         <i class="fa fa-pen-to-square"></i>
                                     </a> --}}
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-alt-danger show-alert-delete-box" data-bs-toggle="tooltip" title="Hapus Data">
+                                    <button type="submit" class="btn btn-alt-danger show-alert-delete-box" data-bs-toggle="tooltip" title="delete">
                                         <i class="fa fa-trash-can"></i>
                                     </button>
                                 </form>

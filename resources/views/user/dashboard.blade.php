@@ -68,13 +68,13 @@
               <div class="col-md py-2 d-md-flex align-items-md-center text-center">
                 <h1 class="text-white mb-0">
                   {{-- <span class="fw-light">Dashboard</span> --}}
-                  <span class="fw-normal fs-lg text-white-75 d-none d-md-inline-block">Welcome Silahkan daftar untuk ambil nomor antrian</span>
+                  <span class="fw-normal fs-lg text-white-75 d-none d-md-inline-block">Welcome To Hospital</span>
                 </h1>
               </div>
               <div class="col-md py-2 d-md-flex align-items-md-center justify-content-md-end text-center">
                 <a href="{{ url('pasien-daftar')}}">
                 <button type="button" class="btn btn-alt-primary">
-                  <i class="fa fa-user-plus opacity-50 me-1"></i> Daftar
+                  <i class="fa fa-user-plus opacity-50 me-1"></i> patient registration
                 </button>
               </a>
               </div>

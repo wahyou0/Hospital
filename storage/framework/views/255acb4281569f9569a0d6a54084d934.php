@@ -13,7 +13,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold"><?php echo e($baru); ?></div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Pasien Baru</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">New patient</div>
                     </div>
                     </div>
                 </a>
@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold"><?php echo e($lama); ?></div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Pasien Lama</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Old Patients</div>
                     </div>
                     </div>
                 </a>
@@ -39,7 +39,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold"><?php echo e($antrian); ?></div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Antrian</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Queue</div>
                     </div>
                     </div>
                 </a>
@@ -52,7 +52,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold"><?php echo e($total); ?></div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Total Pasien</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Total Patients</div>
                     </div>
                     </div>
                 </a>

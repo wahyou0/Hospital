@@ -71,7 +71,6 @@
 
                     <!-- Table -->
                     <div class="table-responsive push">
-                        <a href="{{ url('download')}}">download</a>
                         <table class="table table-bordered table-vcenter table-hover js-dataTable-buttons">
                             <tbody>
                                 <tr>
@@ -83,7 +82,7 @@
                                     <td class="fw-semibold">{{ $data->no_antrian }}</td>
                                 </tr>
                                     <td>Loket Antrian</td>
-                                    <td class="fw-semibold">{{ $data->loket }}</td>
+                                    <td class="fw-semibold">Loket {{ $data->loket }}</td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Pasien</td>
@@ -122,51 +121,22 @@
                                     <td class="fw-semibold">{{ $data->tgl_kunjungan }}</td>
                                 </tr>
                                 <tr class="table-warning">
-                                    <td colspan="2">Silahkan Di Download Dulu kemudian klik tombol simpan</td>
+                                    <td colspan="2">Silahkan Di Download </td>
                                 </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="{{ url('download-pdf') }}" class="btn btn-alt-primary pull-right">
+                                            <i class="fa fa-download opacity-50 me-1"></i> Download
+                                        </a>
+                                        <a href="{{ url('/') }}" class="btn btn-alt-success pull-right">
+                                            <i class="fa fa-circle-left opacity-50 me-1"></i> Back
+                                        </a>
+                                    </td>
+                                </tr>
+                                
                             </tbody>
+                           
                         </table>
-
-                        
-                    <form action="{{ url('pasien-daftar/post-step-three') }}" method="POST">
-                        @csrf
-                            <input type="text" class="form-control form-control-lg" name="no_rekam_medis" placeholder="" hidden>
-                            <input type="text" class="form-control form-control-lg" hidden name="nama_pasien" value="{{ $data->nama_pasien ?? '' }}">
-                            <input type="text" class="form-control form-control-lg" hidden name="tempat_lahir" value="{{ $data->tempat_lahir ?? '' }}">
-                            <input type="text" class="form-control form-control-lg" hidden name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}">
-                            <input type="text" class="form-control form-control-lg" hidden name="nik" value="{{ $data->nik ?? ''}}">
-                            <input type="text" class="form-control form-control-lg" hidden name="no_hp" value="{{ $data->no_hp ?? '' }}">
-                            <select class="js-select2 form-select" id="val-select2" hidden name="cara_bayar" required style="width: 100%;" data-placeholder="Choose one..">
-                                <option hidden value="{{ $data->cara_bayar ?? '' }}">{{ $data->cara_bayar }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                <option value="BRI">BRI</option>
-                                <option value="BNI">BNI</option>
-                                <option value="Mandiri">Mandiri</option>
-                            <input type="date" class="form-control" hidden name="tgl_kunjungan" value="{{ $data->tgl_kunjungan ?? '' }}">
-                            <select class="js-select2 form-select" id="val-select2" hidden name="loket" style="width: 100%;" data-placeholder="Choose one..">
-                                <option hidden value="{{ $data->loket ?? '' }}">{{ $data->loket }}</option><!-- for data-placeholder attribute to work with Select2 plugin -->
-                                <option value="Loket A">Loket A</option>
-                                <option value="Loket B">Loket B</option>
-                            </select>
-                            <select class="js-select2 form-select" id="val-select2" hidden name="poli_tujuan" style="width: 100%;" data-placeholder="Choose one..">
-                                <option hidden value="{{ $data->poli_tujuan ?? '' }}">{{ $data->poli_tujuan }}</option><!-- for data-placeholder attribute to work with Select2 plugin -->
-                                <option value="Loket A">Loket A</option>
-                                <option value="Loket B">Loket B</option>
-                            </select>
-                            <select class="js-select2 form-select" id="val-select2" hidden name="dokter" style="width: 100%;" data-placeholder="Choose one..">
-                                <option hidden value="{{ $data->dokter ?? '' }}">{{ $data->dokter }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                <option value="Loket A">Loket A</option>
-                                <option value="Loket B">Loket B</option>
-                            </select>
-                        <div class="mb-4">
-                        <a href="{{ url('download-pdf') }}" class="btn btn-alt-primary pull-right">
-                            <i class="fa fa-sync-alt opacity-50 me-1"></i> Download
-                        </a>
-                        
-                        <button type="submit" class="btn btn-alt-primary">
-                            <i class="fa fa-check opacity-50 me-1"></i> simpan
-                        </button>
-                        </div>
-                    </form>
                     </div>
                     <!-- END Table -->
 

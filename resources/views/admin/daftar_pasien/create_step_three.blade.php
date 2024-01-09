@@ -71,7 +71,6 @@
 
                     <!-- Table -->
                     <div class="table-responsive push">
-                        <a href="{{ url('download')}}">download</a>
                         <table class="table table-bordered table-vcenter table-hover js-dataTable-buttons">
                             <tbody>
                                 <tr>
@@ -83,7 +82,7 @@
                                     <td class="fw-semibold">{{ $data->no_antrian }}</td>
                                 </tr>
                                     <td>Loket Antrian</td>
-                                    <td class="fw-semibold">{{ $data->loket }}</td>
+                                    <td class="fw-semibold">Loket {{ $data->loket }}</td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Pasien</td>
@@ -122,13 +121,25 @@
                                     <td class="fw-semibold">{{ $data->tgl_kunjungan }}</td>
                                 </tr>
                                 <tr class="table-warning">
-                                    <td colspan="2">Silahkan Di Download Dulu kemudian klik tombol simpan</td>
+                                    <td colspan="2">Silahkan Di Download </td>
                                 </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="{{ url('download') }}" class="btn btn-alt-primary pull-right">
+                                            <i class="fa fa-download opacity-50 me-1"></i> Download
+                                        </a>
+                                        <a href="{{ url('pendaftaran-pasien/cek') }}" class="btn btn-alt-success pull-right">
+                                            <i class="fa fa-circle-left opacity-50 me-1"></i> Back
+                                        </a>
+                                    </td>
+                                </tr>
+                                
                             </tbody>
+                           
                         </table>
 
                         
-                    <form action="{{ url('pendaftaran-pasien/post-step-three') }}" method="POST">
+                    {{-- <form action="{{ url('pendaftaran-pasien/post-step-three') }}" method="POST">
                         @csrf
                             <input type="text" class="form-control form-control-lg" name="no_rekam_medis" placeholder="" hidden>
                             <input type="text" class="form-control form-control-lg" hidden name="nama_pasien" value="{{ $data->nama_pasien ?? '' }}">
@@ -160,13 +171,15 @@
                         <div class="mb-4">
                         <a href="{{ url('download') }}" class="btn btn-alt-primary pull-right">
                             <i class="fa fa-sync-alt opacity-50 me-1"></i> Download
+                        </a><a href="{{ url('pendaftaran-pasien/cek') }}" class="btn btn-alt-primary pull-right">
+                            <i class="fa fa-sync-alt opacity-50 me-1"></i> Back
                         </a>
                         
                         <button type="submit" class="btn btn-alt-primary">
-                            <i class="fa fa-check opacity-50 me-1"></i> simpan
+                            <i class="fa fa-check opacity-50 me-1"></i> Back
                         </button>
                         </div>
-                    </form>
+                    </form> --}}
                     </div>
                     <!-- END Table -->
 

@@ -49,15 +49,15 @@
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Nama Pasien <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="nama_pasien" value="{{ $data->nama_pasien ?? '' }}">
+                                            <input type="text" class="form-control" name="nama_pasien" value="{{ $data->nama_pasien ?? '' }}" required>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Tempat Lahir<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="tempat_lahir" value="{{ $data->tempat_lahir ?? '' }}">
+                                            <input type="text" class="form-control" name="tempat_lahir" value="{{ $data->tempat_lahir ?? '' }}" required>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Tanggal Lahir <span class="text-danger">*</span></label>
-                                            <input type="date" class="js-flatpickr form-control" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}">
+                                            <input type="date" class="js-flatpickr form-control" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}" required>
                                         </div>
                                         <button type="submit" class="btn btn-alt-primary">
                                             <i class="fa fa-check opacity-50 me-1"></i> Lanjut

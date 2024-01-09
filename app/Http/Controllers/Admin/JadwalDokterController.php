@@ -39,7 +39,7 @@ class JadwalDokterController extends Controller
         // dd($data);
 
         jadwal_dokter::create($model);
-        return redirect('/jadwal-dokter')->with('success', 'Jadwal dokter berhsasil ditambah');
+        return redirect('/jadwal-dokter')->with('success', 'saved successfully');
     }
 
     
@@ -66,10 +66,10 @@ class JadwalDokterController extends Controller
         // dd($input);
 
         if (jadwal_dokter::find($input['id'])->update($input)){
-            return Redirect('jadwal-dokter')->with('success', 'Edit Data Berhasil');
+            return Redirect('jadwal-dokter')->with('success', 'updated successfully');
         }
         else{
-            return Redirect('jadwal-dokter')->with('gagal', 'Edit Data Gagal');
+            return Redirect('jadwal-dokter')->with('gagal', 'failed to update');
         }
     }
 
@@ -78,9 +78,9 @@ class JadwalDokterController extends Controller
     {
         $data = jadwal_dokter::find($id);
         if ($data->delete()) {
-            return redirect('/jadwal-dokter')->with('success', 'Data Telah di Hapus');
+            return redirect('/jadwal-dokter')->with('success', 'This data has been successfully deleted');
         } else {
-            return back()->with(['gagal', 'Hapus Data Gagal']);
+            return back()->with(['gagal', 'Failed to delete']);
         }
     }
 }

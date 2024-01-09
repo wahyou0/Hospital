@@ -14,7 +14,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold">{{ $baru }}</div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Pasien Baru</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">New patient</div>
                     </div>
                     </div>
                 </a>
@@ -27,7 +27,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold">{{ $lama}}</div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Pasien Lama</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Old Patients</div>
                     </div>
                     </div>
                 </a>
@@ -40,7 +40,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold">{{ $antrian }}</div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Antrian</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Queue</div>
                     </div>
                     </div>
                 </a>
@@ -53,7 +53,7 @@
                     </div>
                     <div>
                         <div class="fs-3 fw-semibold">{{ $total }}</div>
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Total Pasien</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Total Patients</div>
                     </div>
                     </div>
                 </a>

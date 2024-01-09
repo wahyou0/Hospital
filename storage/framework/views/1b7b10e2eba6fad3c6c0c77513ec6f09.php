@@ -80,49 +80,63 @@
             <li class="nav-main-item">
                 <a class="nav-main-link" href="<?php echo e(url('layanan')); ?>">
                   <i class="nav-main-link-icon fa fa-user-doctor"></i>
-                  <span class="nav-main-link-name">Layanan</span>
+                  <span class="nav-main-link-name">Service</span>
                 </a>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="<?php echo e(url('pendaftaran-pasien/cek')); ?>">
                   <i class="nav-main-link-icon fa fa-file-pen"></i>
-                  <span class="nav-main-link-name">Pendaftaran Pasien</span>
+                  <span class="nav-main-link-name">Patient Registration</span>
                 </a>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="<?php echo e(url('jadwal-dokter')); ?>">
                   <i class="nav-main-link-icon fa fa-book-medical"></i>
-                  <span class="nav-main-link-name">Jadwal Dokter</span>
+                  <span class="nav-main-link-name">Doctor's Schedule</span>
                 </a>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="<?php echo e(url('kamar-rawat')); ?>">
                   <i class="nav-main-link-icon fa fa-clipboard-list"></i>
-                  <span class="nav-main-link-name">Info Kamar Rawat</span>
+                  <span class="nav-main-link-name">Medical ward info</span>
                 </a>
             </li>
+            
+            
             <li class="nav-main-item">
-                <a class="nav-main-link" href="<?php echo e(url('data-pasien')); ?>">
-                  <i class="nav-main-link-icon fa fa-id-card"></i>
-                  <span class="nav-main-link-name">Data Pasien</span>
-                </a>
+              <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                <i class="nav-main-link-icon fa fa-id-card"></i>
+                <span class="nav-main-link-name">Patient</span>
+              </a>
+              <ul class="nav-main-submenu">
+                <li class="nav-main-item">
+                  <a class="nav-main-link" href="<?php echo e(url('data-pasien')); ?>">
+                    <span class="nav-main-link-name">Patient Data</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link" href="<?php echo e(url('instalasi')); ?>">
+                    <span class="nav-main-link-name">Patient Installation</span>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="<?php echo e(url('daftar-antrian')); ?>">
                   <i class="nav-main-link-icon fa fa-clipboard-list"></i>
-                  <span class="nav-main-link-name">Daftar antrian</span>
+                  <span class="nav-main-link-name">Queue list</span>
                 </a>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="<?php echo e(url('loket')); ?>">
                   <i class="nav-main-link-icon fa fa-list"></i>
-                  <span class="nav-main-link-name">Loket</span>
+                  <span class="nav-main-link-name">counter</span>
                 </a>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link" href="<?php echo e(url('report')); ?>">
                   <i class="nav-main-link-icon fa fa-file-lines"></i>
-                  <span class="nav-main-link-name">Report Pasien</span>
+                  <span class="nav-main-link-name">Patient Report</span>
                 </a>
             </li>
             <li class="nav-main-item">
@@ -144,7 +158,7 @@
                 </li>
                 <li class="nav-main-item">
                   <a class="nav-main-link" href="<?php echo e(url('register-dokter')); ?>">
-                    <span class="nav-main-link-name">Dokter</span>
+                    <span class="nav-main-link-name">Doctor</span>
                   </a>
                 </li>
               </ul>
@@ -164,13 +178,13 @@
                   <li class="nav-main-item">
                       <a class="nav-main-link" href="<?php echo e(url('daftar-pasien-dokter')); ?>">
                         <i class="nav-main-link-icon fa fa-id-card"></i>
-                        <span class="nav-main-link-name">Pasien</span>
+                        <span class="nav-main-link-name">Patient</span>
                       </a>
                   </li>
                   <li class="nav-main-item">
                       <a class="nav-main-link" href="<?php echo e(url('jadwal')); ?>">
                         <i class="nav-main-link-icon fa fa-book-medical"></i>
-                        <span class="nav-main-link-name">Jadwal Dokter</span>
+                        <span class="nav-main-link-name">Doctor's Schedule</span>
                       </a>
                   </li>
 

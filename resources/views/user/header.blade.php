@@ -23,19 +23,19 @@
           <li class="nav-main-item">
             <a class="nav-main-link active" href="{{ url('layanan-hospital') }}">
               <i class="nav-main-link-icon fa fa-clipboard-list"></i>
-              <span class="nav-main-link-name">Layanan</span>
+              <span class="nav-main-link-name">Service</span>
             </a>
           </li>
           <li class="nav-main-item">
             <a class="nav-main-link active" href="{{ url('info-kamar-rawat') }}">
               <i class="nav-main-link-icon fa fa-bed"></i>
-              <span class="nav-main-link-name">Info Kamar Rawat</span>
+              <span class="nav-main-link-name">Medical ward info</span>
             </a>
           </li>
           <li class="nav-main-item">
             <a class="nav-main-link active" href="{{ url('daftar-jadwal-dokter') }}">
               <i class="nav-main-link-icon fa fa-user-doctor"></i>
-              <span class="nav-main-link-name">Jadwal Dokter</span>
+              <span class="nav-main-link-name">Doctor's Schedule</span>
             </a>
           </li>
           <li class="nav-main-item">

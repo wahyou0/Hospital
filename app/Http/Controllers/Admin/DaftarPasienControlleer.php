@@ -38,8 +38,8 @@ class DaftarPasienControlleer extends Controller
             'nama_pasien' => 'required',
         ],
             [
-                'nik.required' => 'NIK tidak boleh Kosong',
-                'nama_pasien.required' => 'Nama Pasien tidak boleh kosong',
+                'nik.required' => 'NIK cannot be empty',
+                'nama_pasien.required' => 'Patient Name cannot be empty',
                 
             ],  
         );
@@ -62,9 +62,9 @@ class DaftarPasienControlleer extends Controller
         $data->dokter           = $request->input('dokter');
 
         if ($data->save()){
-            return redirect('/data-pasien')->with('success', 'Data berhasil diedit');
+            return redirect('/data-pasien')->with('success', 'updated successfully');
         }else {
-            return Redirect('/data-pasien')->with('gagal', 'tambah data gagal');
+            return Redirect('/data-pasien')->with('gagal', 'failed to update');
         }
     }
 
@@ -131,7 +131,7 @@ class DaftarPasienControlleer extends Controller
 
         if( $reqnik == null ) {
             return back()->withErrors([
-                'nik' => 'NIK anda belum terdaftar pilih pasien baru',
+                'nik' => 'Your NIK has not been registered. Select a new patient',
             ]);
         }else {
             if(empty($request->session()->get('data'))){
@@ -226,50 +226,30 @@ class DaftarPasienControlleer extends Controller
     	$validatedData = $request->validate([
             'loket' => 'required',
             'nama_pasien' => 'required',
+            'jkl_pasien' => 'required',
             'nik' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
             'no_hp' => 'required',
             'cara_bayar' => 'required',
-            'tgl_kunjungan' => 'required',
-            'poli_tujuan' => 'required', //bisa kosong
-            'dokter' => 'required',
+            'tgl_kunjungan' => 'required'
         ]);
 
+        $data = new daftar_pasien();
         $data = $request->session()->get('data');
         $data->fill($validatedData);
+        $data->poli_tujuan = $request['poli_tujuan'];
+        $data->dokter = $request['dokter'];
+        $data->no_rekam_medis = $request['no_rekam_medis'];
         // $data->dokter = $request->dokter;
         $data->no_antrian = $uantri;
         $data->no_registrasi = $nomer;
-        $request->session()->put('data', $data);
-        // dd($data);
+        // $request->session()->put('data', $data);
 
-        return redirect('pendaftaran-pasien/create-step-three');
-    }
-
-    public function createStepThree(Request $request)
-    {
-        $data = $request->session()->get('data');
-
-        return view('admin.daftar_pasien.create_step_three',compact('data'));
-    }
-
-    public function view_pdf(Request $request)
-    {
-        $data = $request->session()->get('data');
-     
-        $pdf = Pdf::loadView('pdf', ['data' => $data]);
-     
-        return $pdf->download('antrian.pdf'); 
-
-    }
-
-    public function postCreateStepThree(Request $request)
-    {
-    	$data = $request->session()->get('data');
+        // save data
         $data->konfirmasi = 'belum dipanggil';
 
-        $nik = $data->nik;
+        $nik = $request['nik'];
         $cekisi = konfirmasi_pasien::where('nik',$nik)->count();
 
         if ($cekisi == 0) {
@@ -279,6 +259,7 @@ class DaftarPasienControlleer extends Controller
             $pasien->loket          = $data->loket;
             $pasien->jenis_pasien   = $data->jenis_pasien;
             $pasien->nama_pasien    = $data->nama_pasien;
+            $pasien->jkl_pasien     = $data->jkl_pasien;
             $pasien->nik            = $data->nik;
             $pasien->no_rekam_medis = $data->no_rekam_medis;
             $pasien->tempat_lahir   = $data->tempat_lahir;
@@ -298,6 +279,7 @@ class DaftarPasienControlleer extends Controller
             $pasien->loket          = $data->loket;
             $pasien->jenis_pasien   = $data->jenis_pasien;
             $pasien->nama_pasien    = $data->nama_pasien;
+            $pasien->jkl_pasien     = $data->jkl_pasien;
             $pasien->nik            = $data->nik;
             $pasien->no_rekam_medis = $data->no_rekam_medis;
             $pasien->tempat_lahir   = $data->tempat_lahir;
@@ -311,11 +293,82 @@ class DaftarPasienControlleer extends Controller
             $pasien->save();
         }
 
-        // dd($data);
+        
         $data->save();
+
+        return redirect('pendaftaran-pasien/create-step-three');
+    }
+
+    public function createStepThree(Request $request)
+    {
+        $data = $request->session()->get('data');
+
+        return view('admin.daftar_pasien.create_step_three',compact('data'));
+    }
+
+    public function view_pdf(Request $request)
+    {
+        $data = $request->session()->get('data');
+     
+        $pdf = Pdf::loadView('pdf', ['data' => $data]);
+        $request->session()->forget('data');
+
+        return $pdf->download('antrian.pdf');
+
+    }
+
+    public function postCreateStepThree(Request $request)
+    {
+    	// $data = $request->session()->get('data');
+        // $data->konfirmasi = 'belum dipanggil';
+
+        // $nik = $data->nik;
+        // $cekisi = konfirmasi_pasien::where('nik',$nik)->count();
+
+        // if ($cekisi == 0) {
+        //     $pasien = new konfirmasi_pasien();
+        //     $pasien->no_registrasi  = $data->no_registrasi;
+        //     $pasien->no_antrian     = $data->no_antrian;
+        //     $pasien->loket          = $data->loket;
+        //     $pasien->jenis_pasien   = $data->jenis_pasien;
+        //     $pasien->nama_pasien    = $data->nama_pasien;
+        //     $pasien->nik            = $data->nik;
+        //     $pasien->no_rekam_medis = $data->no_rekam_medis;
+        //     $pasien->tempat_lahir   = $data->tempat_lahir;
+        //     $pasien->tgl_lahir      = $data->tgl_lahir;
+        //     $pasien->no_hp          = $data->no_hp;
+        //     $pasien->cara_bayar     = $data->cara_bayar;
+        //     $pasien->tgl_kunjungan  = $data->tgl_kunjungan;
+        //     $pasien->poli_tujuan    = $data->poli_tujuan;
+        //     $pasien->dokter         = $data->dokter;
+        //     $pasien->konfirmasi     = $data->konfirmasi;
+        //     $pasien->save();
+        // }
+        // else {
+        //     $pasien = konfirmasi_pasien::where('nik',$nik)->first();
+        //     $pasien->no_registrasi  = $data->no_registrasi;
+        //     $pasien->no_antrian     = $data->no_antrian;
+        //     $pasien->loket          = $data->loket;
+        //     $pasien->jenis_pasien   = $data->jenis_pasien;
+        //     $pasien->nama_pasien    = $data->nama_pasien;
+        //     $pasien->nik            = $data->nik;
+        //     $pasien->no_rekam_medis = $data->no_rekam_medis;
+        //     $pasien->tempat_lahir   = $data->tempat_lahir;
+        //     $pasien->tgl_lahir      = $data->tgl_lahir;
+        //     $pasien->no_hp          = $data->no_hp;
+        //     $pasien->cara_bayar     = $data->cara_bayar;
+        //     $pasien->tgl_kunjungan  = $data->tgl_kunjungan;
+        //     $pasien->poli_tujuan    = $data->poli_tujuan;
+        //     $pasien->dokter         = $data->dokter;
+        //     $pasien->konfirmasi     = $data->konfirmasi;
+        //     $pasien->save();
+        // }
+
+        
+        // $data->save();
         $request->session()->forget('data');
 
         return redirect('pendaftaran-pasien/cek');
-    }    
+    } 
 
 }

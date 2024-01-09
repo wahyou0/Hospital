@@ -17,7 +17,7 @@
                             <th class="text-center" style="width: 5%">No.</th>
                             <th>Kode Loket</th>
                             <th>Poli</th>
-                            <th class="text-center" style="width: 20%;">Aksi</th>
+                            <th class="text-center" style="width: 12%;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -13,16 +13,16 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 2%">No.</th>
-                            <th>Loket</th>
-                            <th>No. Antrian</th>
                             <th>No. Rekam Medis</th>
                             <th>Nik</th>
                             <th>Nama Pasien</th>
+                            <th>JKL</th>
                             <th>Tempat, Tgl Lahir</th>
                             <th>Tanggal Kunjungan</th>
                             <th>Jenis</th>
                             <th>Cara Bayar</th>
                             <th>Unit Pelayanan</th>
+                            <th>Instalasi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,16 +32,16 @@
                         @foreach ($report as $data)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>
-                                <td>{{ $data->loket }}</td>
-                                <td>{{ $data->no_antrian}}</td>
                                 <td class="fw-semibold">{{ $data->no_rekam_medis }}</td>
                                 <td>{{ $data->nik }}</td>
                                 <td>{{ $data->nama_pasien }}</td>
+                                <td>{{ $data->jkl_pasien }}</td>
                                 <td>{{ $data->tempat_lahir }},{{ $data->tgl_lahir }}</td>
                                 <td>{{ $data->tgl_kunjungan }}</td>
                                 <td>{{ $data->jenis_pasien }}</td>
                                 <td>{{ $data->cara_bayar }}</td>
                                 <td>{{ $data->poli_tujuan }}</td>
+                                <td>{{ $data->pelayanan }}</td>
                             </tr>
                         @endforeach
                     </tbody>

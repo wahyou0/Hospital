@@ -25,7 +25,7 @@ class LoketController extends Controller
         $model = $request->all();
 
         loket::create($model);
-        return redirect('/loket')->with('success', 'Data berhsasil ditambah');
+        return redirect('/loket')->with('success', 'saved successfully');
     }
 
     /**
@@ -57,6 +57,11 @@ class LoketController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = loket::find($id);
+        if ($data->delete()) {
+            return redirect('/loket')->with('success', 'This data has been successfully deleted');
+        } else {
+            return back()->with(['gagal', 'Failed to delete']);
+        }
     }
 }

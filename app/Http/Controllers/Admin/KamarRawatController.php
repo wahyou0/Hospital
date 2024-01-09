@@ -50,9 +50,9 @@ class KamarRawatController extends Controller
         $data->save();
 
         if ($data->save()){
-            return redirect('/kamar-rawat')->with('success', 'Data berhasil ditambah');
+            return redirect('/kamar-rawat')->with('success', 'saved successfully');
         }else {
-            return Redirect('/kamar-rawat')->with('gagal', 'tambah data gagal');
+            return Redirect('/kamar-rawat')->with('gagal', 'failed to save');
         }
 
 
@@ -100,9 +100,9 @@ class KamarRawatController extends Controller
         $data->save();
 
         if ($data->save()){
-            return redirect('/kamar-rawat')->with('success', 'Data berhasil diedit');
+            return redirect('/kamar-rawat')->with('success', 'updated successfully');
         }else {
-            return Redirect('/kamar-rawat')->with('gagal', 'tambah data gagal');
+            return Redirect('/kamar-rawat')->with('gagal', 'failed to update');
         }
     }
 
@@ -111,9 +111,9 @@ class KamarRawatController extends Controller
     {
         $data = kamar_rawat::find($id);
         if ($data->delete()) {
-            return redirect('/jadwal-dokter')->with('success', 'Data telah dihapus');
+            return redirect('/jadwal-dokter')->with('success', 'This data has been successfully deleted');
         } else {
-            return back()->with(['gagal', 'Hapus Data Gagal']);
+            return back()->with(['gagal', 'Failed to delete']);
         }
     }
 }

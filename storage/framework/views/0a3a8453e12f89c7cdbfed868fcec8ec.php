@@ -148,7 +148,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <?php if(session()->has('success')): ?>
     <script>
-        swal("Berhasil!","<?php echo Session::get('success'); ?>","success",{
+        swal("Success!","<?php echo Session::get('success'); ?>","success",{
             button:"ok"
         })
     </script>
@@ -169,11 +169,11 @@
 
             event.preventDefault();
             swal({
-                title: "Apakah anda yakin ingin menghapus data ini ?",
-                text: "Jika YA maka Data ini akan terhapus",
+                title: "Are you sure ?",
+                text: " you want to delete this data",
                 icon: "warning",
                 type: "warning",
-                buttons: ["Batal","Ok!"],
+                buttons: ["Cancel","YES!"],
                 confirmButtonColor: '#990000',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'

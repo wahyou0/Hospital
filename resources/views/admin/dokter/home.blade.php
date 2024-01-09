@@ -14,7 +14,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold">{{ $data }}</div>
-                            <div class="fs-sm fw-semibold text-uppercase text-muted">Belum Diperiksa</div>
+                            <div class="fs-sm fw-semibold text-uppercase text-muted">Not checked yet</div>
                         </div>
                         </div>
                     </a>
@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold">{{ $sudah }}</div>
-                            <div class="fs-sm fw-semibold text-uppercase text-muted">Sudah Diperiksa</div>
+                            <div class="fs-sm fw-semibold text-uppercase text-muted">Have been checked</div>
                         </div>
                         </div>
                     </a>
@@ -40,7 +40,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold">{{ $total }}</div>
-                            <div class="fs-sm fw-semibold text-uppercase text-muted">Total Pasien Hari Ini</div>
+                            <div class="fs-sm fw-semibold text-uppercase text-muted">Total Patients Today</div>
                         </div>
                         </div>
                     </a>

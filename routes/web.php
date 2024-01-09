@@ -6,6 +6,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\JadwalDokterController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DataPasienController;
+use App\Http\Controllers\Admin\InstalasiController;
 use App\Http\Controllers\Admin\KamarRawatController;
 use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\LoketController;
@@ -114,6 +116,7 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('data-pasien', [DaftarPasienControlleer::class, 'index']);
         Route::get('data-pasien/edit/{id}', [DaftarPasienControlleer::class, 'edit']);
         Route::post('data-pasien/update', [DaftarPasienControlleer::class, 'update']);
+        Route::delete('data-pasien/delete/{id}', [DataPasienController::class, 'destroy']);
 
         Route::get('daftar-antrian', [DaftarAntrianController::class, 'index']);
         Route::get('daftar-antrian/edit/{id}', [DaftarAntrianController::class, 'edit']);
@@ -131,6 +134,11 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('auth/edit/{id}', [AuthController::class, 'edit']);
         Route::post('auth/update', [AuthController::class, 'update']);
         Route::delete('auth/delete/{id}', [AuthController::class, 'destroy']);
+
+        Route::get('instalasi', [InstalasiController::class, 'index']);
+        Route::get('instalasi/edit/{id}', [InstalasiController::class, 'edit']);
+        Route::post('instalasi/update', [InstalasiController::class, 'update']);
+        Route::delete('instalasi/delete/{id}', [InstalasiController::class, 'destroy']);
 
         Route::get('report', [ReportController::class, 'index']);
     });

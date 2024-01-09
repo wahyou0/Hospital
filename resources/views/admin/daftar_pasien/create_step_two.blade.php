@@ -97,6 +97,16 @@
                         </div>
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
+                                <label class="form-label" for="val-select2">Jenis Kelamin <span class="text-danger">*</span></label>
+                                <select class="js-select2 form-select" id="val-select2" name="jkl_pasien" required style="width: 100%;" data-placeholder="Choose one.." required>
+                                    <option hidden value="{{ $reqnik->jkl_pasien ?? ''}}">{{ $reqnik->jkl_pasien ?? ''}}</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="mb-4">
                                 <label class="form-label" for="val-select2">Pilih Cara Bayar <span class="text-danger">*</span></label>
                                 <select class="js-select2 form-select" id="val-select2" name="cara_bayar" required style="width: 100%;" data-placeholder="Choose one..">
                                     <option hidden value="{{ $data->cara_bayar ?? '' }}">{{ $data->cara_bayar }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
@@ -125,7 +135,7 @@
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Klinik <span class="text-danger">*</span></label>
-                                        <select class="js-select2 form-select" name="poli_tujuan" id="poli" required style="width: 100%;" data-placeholder="Choose one..">
+                                        <select class="js-select2 form-select" name="poli_tujuan" id="poli" style="width: 100%;" data-placeholder="Choose one..">
                                            
                                         </select>
                                     </div>
@@ -135,7 +145,7 @@
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
                                 <label class="form-label">Dokter</label>
-                                <select class="js-select2 form-select" name="dokter" id="dokt" required style="width: 100%;" data-placeholder="Choose one..">
+                                <select class="js-select2 form-select" name="dokter" id="dokt" style="width: 100%;" data-placeholder="Choose one..">
                                 </select>
                             </div>
                         </div>

@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 
     <div class="block block-themed block-rounded">
@@ -18,7 +17,7 @@
                             <th>Nama Dokter</th>
                             <th>Umum/Spesialis</th>
                             <th style="width: 28%;">Jadwal</th>
-                            <th class="text-center" style="width: 20%;">Aksi</th>
+                            <th class="text-center" style="width: 12%;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +33,7 @@
                             <td>
                                 <form action="<?php echo e(url('jadwal-dokter/delete/'.$data->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
-                                    <a href="" class="btn btn-alt-info" data-bs-toggle="tooltip" title="View Data">
-                                        <i class="fa fa-user"></i>
-                                    </a>
+                                    
                                     <a class="btn btn-alt-success" href="<?php echo e(url('jadwal-dokter/edit/'.$data->id)); ?>" data-bs-toggle="tooltip" title="Edit Data">
                                         <i class="fa fa-pen-to-square"></i>
                                     </a>

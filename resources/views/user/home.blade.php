@@ -85,7 +85,7 @@
                         {{ $no_antrian->no_antrian}}
                       @endif
                     </div>
-                    <div class="fs-sm fw-semibold text-uppercase text-muted">Antrian Ke</div>
+                    <div class="fs-sm fw-semibold text-uppercase text-muted">queue to</div>
                   </div>
                 </div>
               </a>
@@ -95,7 +95,7 @@
             <div class="block-content p-2">
               <div class="py-4 text-center bg-body-light rounded">
                 <div class="fs-2 fw-bold mb-0">{{ $antrian }}</div>
-                <div class="fs-sm fw-semibold text-uppercase text-muted">Jumlah Antrian</div>
+                <div class="fs-sm fw-semibold text-uppercase text-muted">Number of Queues</div>
               </div>
             </div>
           </a>
@@ -105,7 +105,7 @@
             <div class="block-content p-2">
               <div class="py-4 text-center bg-body-light rounded">
                 <div class="fs-2 fw-bold mb-0">{{ $pasien}}</div>
-                <div class="fs-sm fw-semibold text-uppercase text-muted">Jumlah Pasien</div>
+                <div class="fs-sm fw-semibold text-uppercase text-muted">number of patients</div>
               </div>
             </div>
           </a>

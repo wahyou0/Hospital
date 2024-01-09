@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Nama Pasien</label>
-                                        <input type="text" class="form-control form-control-lg" name="nama_pasien" value="{{ $data->nama_pasien ?? '' }}">
+                                        <input type="text" class="form-control form-control-lg" name="nama_pasien" value="{{ $data->nama_pasien ?? '' }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -70,11 +70,11 @@
                                 <div class="row mb-4">
                                     <div class="col-6">
                                         <label class="form-label">Tempat Lahir</label>
-                                        <input type="text" class="form-control form-control-lg" name="tempat_lahir" value="{{ $data->tempat_lahir ?? '' }}">
+                                        <input type="text" class="form-control form-control-lg" name="tempat_lahir" value="{{ $data->tempat_lahir ?? '' }}" required>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Tanggal Lahir</label>
-                                        <input type="date" class="js-flatpickr form-control" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}">
+                                        <input type="date" class="js-flatpickr form-control" name="tgl_lahir" value="{{ $data->tgl_lahir ?? '' }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -84,19 +84,29 @@
                                 <div class="row mb-4">
                                     <div class="col-6">
                                         <label class="form-label">Nik</label>
-                                        <input type="text" class="form-control form-control-lg" name="nik" value="{{ $data->nik ?? ''}}">
+                                        <input type="text" class="form-control form-control-lg" name="nik" value="{{ $data->nik ?? ''}}" required>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Kontak Pasien</label>
-                                        <input type="text" class="form-control form-control-lg" name="no_hp" value="{{ $data->no_hp ?? '' }}">
+                                        <input type="text" class="form-control form-control-lg" name="no_hp" value="{{ $data->no_hp ?? '' }}" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
+                                <label class="form-label" for="val-select2">Jenis Kelamin <span class="text-danger">*</span></label>
+                                <select class="js-select2 form-select" id="val-select2" name="jkl_pasien" required style="width: 100%;" data-placeholder="Choose one.." required>
+                                    <option hidden value="{{ $data->jkl_pasien ?? ''}}">{{ $data->jkl_pasien ?? ''}}</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="mb-4">
                                 <label class="form-label" for="val-select2">Pilih Cara Bayar <span class="text-danger">*</span></label>
-                                <select class="js-select2 form-select" id="val-select2" name="cara_bayar" required style="width: 100%;" data-placeholder="Choose one..">
+                                <select class="js-select2 form-select" id="val-select2" name="cara_bayar" required style="width: 100%;" data-placeholder="Choose one.." required>
                                     <option hidden value="{{ $data->cara_bayar ?? '' }}">{{ $data->cara_bayar }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                     <option value="BRI">BRI</option>
                                     <option value="BNI">BNI</option>
@@ -107,7 +117,7 @@
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
                                 <label class="form-label">Tanggal Kunjungan<span class="text-danger">*</span></label>
-                                <input type="date" class="js-flatpickr form-control" name="tgl_kunjungan" value="{{ $data->tgl_kunjungan ?? '' }}">
+                                <input type="date" class="js-flatpickr form-control" name="tgl_kunjungan" value="{{ $data->tgl_kunjungan ?? '' }}" required>
                             </div>
                         </div>
                         <div class="row">
@@ -123,7 +133,7 @@
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Klinik <span class="text-danger">*</span></label>
-                                        <select class="js-select2 form-select" name="poli_tujuan" id="poli" required style="width: 100%;" data-placeholder="Choose one..">
+                                        <select class="js-select2 form-select" name="poli_tujuan" id="poli" style="width: 100%;" data-placeholder="Choose one..">
                                            
                                         </select>
                                     </div>
@@ -133,7 +143,7 @@
                         <div class="col-lg-12 col-xl-12">
                             <div class="mb-4">
                                 <label class="form-label">Dokter</label>
-                                <select class="js-select2 form-select" name="dokter" id="dokt" required style="width: 100%;" data-placeholder="Choose one..">
+                                <select class="js-select2 form-select" name="dokter" id="dokt" style="width: 100%;" data-placeholder="Choose one..">
                                 </select>
                             </div>
                         </div>

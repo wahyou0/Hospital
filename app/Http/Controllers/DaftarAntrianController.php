@@ -20,10 +20,10 @@ class DaftarAntrianController extends Controller
         $data->konfirmasi = 'Sudah Dipanggil';
         
         if ($data->save()) {
-            return redirect('/daftar-antrian')->with('success', 'Pasien berhasil dipanggil');
+            return redirect('/daftar-antrian')->with('success', 'The patient was successfully called');
         }
         else {
-            return redirect('/daftar-antrian')->with('gagal', 'Pasien gagal dipanggil');
+            return redirect('/daftar-antrian')->with('gagal', 'Patient failed to call');
         }
     }
 }
