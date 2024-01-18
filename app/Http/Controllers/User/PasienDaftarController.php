@@ -122,7 +122,7 @@ class PasienDaftarController extends Controller
 
 
         $ambilnik = $request->nik;
-        $reqnik = konfirmasi_pasien::all()->where('nik',$ambilnik)->first();
+        $reqnik = konfirmasi_pasien::all()->where('no_rekam_medis',$ambilnik)->first();
         // dd($reqnik);
 
         if( $reqnik == null ) {
@@ -159,7 +159,7 @@ class PasienDaftarController extends Controller
         $data = $request->session()->get('data');
         $reqnik = $request->session()->get('reqnik');
         // $loket = loket_option::all()->groupBy('loket');
-        $opsi = loket_option::all();
+        $opsi = loket::all();
         
         return view('user.daftar.create_step_two',compact('data','reqnik','opsi'));
     }
@@ -291,22 +291,26 @@ class PasienDaftarController extends Controller
 
         $data->save();
 
+        $ambilnik = $data->nik;
+        $nik = konfirmasi_pasien::all()->where('nik',$ambilnik)->first();
+        
+        $request->session()->put('nik', $nik);
+        $request->session()->forget('data');
         return redirect('pasien-daftar/create-step-three');
     }
 
     public function createStepThree(Request $request)
     {
-        $data = $request->session()->get('data');
+        $nik = $request->session()->get('nik');
 
-        return view('user.daftar.create_step_three',compact('data'));
+        return view('user.daftar.create_step_three',compact('nik'));
     }
 
     public function view_pdf(Request $request)
     {
-        $data = $request->session()->get('data');
-     
+        $data = $request->session()->get('nik');
+
         $pdf = Pdf::loadView('pdf', ['data' => $data]);
-        $request->session()->forget('data');
      
         return $pdf->download('antrian.pdf'); 
 

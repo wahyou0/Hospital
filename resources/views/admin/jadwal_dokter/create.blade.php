@@ -18,7 +18,7 @@
                                     <select class="js-select2 form-select" name="nama_dokter" required style="width: 100%;" data-placeholder="Choose one..">
                                         <option hidden value=""></option>
                                         @foreach ($dokter as $item )
-                                            <option value={{ $item->name }}>{{ $item->name }}</option>
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -27,7 +27,7 @@
                                     <select class="js-select2 form-select" name="spesialis" required style="width: 100%;" data-placeholder="Choose one..">
                                         <option hidden value=""></option>
                                         @foreach ($data as $item )
-                                            <option value={{ $item->poli_tujuan }}>{{ $item->poli_tujuan }}</option>
+                                            <option value="{{ $item->poli_tujuan }}">{{ $item->poli_tujuan }}</option>
                                         @endforeach
                                     </select>
                                 </div>

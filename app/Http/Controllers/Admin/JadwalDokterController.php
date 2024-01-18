@@ -36,7 +36,6 @@ class JadwalDokterController extends Controller
         // $data = new loket_option();
         // $data->poli_tujuan = $request->spesialis;
         // $data->save();
-        // dd($data);
 
         jadwal_dokter::create($model);
         return redirect('/jadwal-dokter')->with('success', 'saved successfully');

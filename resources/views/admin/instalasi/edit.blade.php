@@ -18,10 +18,22 @@
                                 
                                 <div class="mb-4">
                                     <label class="form-label" for="val-select2">Instalasi <span class="text-danger">*</span></label>
-                                    <select class="js-select2 form-select" id="val-select2" name="pelayanan" style="width: 100%;" data-placeholder="Choose one..">
+                                    <select class="js-select2 form-select" id="instalasi" name="pelayanan" style="width: 100%;" data-placeholder="Choose one..">
                                         <option hidden value="{{ $data->pelayanan }}">{{ $data->pelayanan }}</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         <option value="Rawat Jalan">Rawat Jalan</option>
                                         <option value="Rawat Inap">Rawat Inap</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label" for="val-select2">Layanan <span class="text-danger">*</span></label>
+                                    <select class="js-select2 form-select" id="namaruang" name="nama_ruangan" style="width: 100%;">
+                                        
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label" for="val-select2">Kelas <span class="text-danger">*</span></label>
+                                    <select class="js-select2 form-select" id="kelas" name="kelas" style="width: 100%;">
+                                        
                                     </select>
                                 </div>
                                 <div class="mb-4">
@@ -95,5 +107,76 @@
             </div>
         </form>
     </div>
+
+    <script src="{{ asset('code/assets/js/lib/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#instalasi').on('change', function(){
+                var instalasi = $(this).val();
+                // console.log(instalasi);
+                if (instalasi) {
+                    $.ajax({
+                        url: '/instalasi/' + instalasi,
+                        type: 'GET',
+                        data: {
+                            '_token': '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function(data){
+                            // console.log(data);
+                            if (data) {
+                                $('#namaruang').empty();
+                                $('#namaruang').append('<option value="">--pilih--</option>');
+                                $.each(data,function(key, ruang){
+                                    $('select[name="nama_ruangan"]').append(
+                                        '<option value="' + ruang.nama_ruangan + '">' +
+                                            ruang.nama_ruangan + '</option>'
+                                    );
+                                    
+                                            //untuk dropdown ke 3
+                                        $('#namaruang').on('change', function(){
+                                            var kelas =  $(this).val();
+                                            // console.log(kelas);
+                                            if (kelas) {
+                                                $.ajax({
+                                                    url: '/kelas/' + kelas,
+                                                    type: 'GET',
+                                                    data: {
+                                                        '_token': '{{ csrf_token() }}'
+                                                    },
+                                                    dataType: 'json',
+                                                    success: function(kel){
+                                                    // console.log(kel);
+                                                        if (kel) {
+                                                            $('#kelas').empty();
+                                                            $('#kelas').append('<option value="">--pilih--</option>');
+                                                            $.each(kel,function(key, kelas){
+                                                                $('select[name="kelas"]').append(
+                                                                '<option value="' + kelas.kelas + '">' +
+                                                                    kelas.kelas + '</option>'
+                                                                );
+                                                            });
+                                                        } else {
+                                                            $('#kelas').empty();
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                $('#namaruang').empty();
+                                            }
+                                        })
+
+                                });
+                            } else {
+                                $('#namaruang').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#instalasi').empty();
+                }
+            });
+        });
+    </script>
 
 @endsection

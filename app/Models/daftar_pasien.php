@@ -26,6 +26,8 @@ class daftar_pasien extends Model
         'poli_tujuan',
         'dokter',
         'konfirmasi',
-        'pelayanan'
+        'pelayanan',
+        'nama_ruangan',
+        'kelas'
     ];
 }

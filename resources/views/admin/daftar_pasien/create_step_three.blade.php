@@ -75,50 +75,50 @@
                             <tbody>
                                 <tr>
                                     <td>Nomor Registrasi</td>
-                                    <td class="fw-semibold">{{ $data->no_registrasi}}</td>
+                                    <td class="fw-semibold">{{ $nik->no_registrasi}}</td>
                                 </tr>
                                 <tr>
                                     <td>Nomor Antrian</td>
-                                    <td class="fw-semibold">{{ $data->no_antrian }}</td>
+                                    <td class="fw-semibold">{{ $nik->no_antrian }}</td>
                                 </tr>
                                     <td>Loket Antrian</td>
-                                    <td class="fw-semibold">Loket {{ $data->loket }}</td>
+                                    <td class="fw-semibold">Loket {{ $nik->loket }}</td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Pasien</td>
-                                    <td class="fw-semibold">{{ $data->jenis_pasien }}</td>
+                                    <td class="fw-semibold">{{ $nik->jenis_pasien }}</td>
                                 </tr>
                                 <tr>
                                     <td>No. Rekam Medis</td>
-                                    <td class="fw-semibold">{{ $data->no_rekam_medis }}</td>
+                                    <td class="fw-semibold">{{ $nik->no_rekam_medis }}</td>
                                 </tr>
                                 <tr>
                                     <td>Nama Pasien</td>
-                                    <td class="fw-semibold">{{ $data->nama_pasien }}</td>
+                                    <td class="fw-semibold">{{ $nik->nama_pasien }}</td>
                                 </tr>
                                 <tr>
                                     <td>NIK Pasien</td>
-                                    <td class="fw-semibold">{{ $data->nik }}</td>
+                                    <td class="fw-semibold">{{ $nik->nik }}</td>
                                 </tr>
                                 <tr>
                                     <td>Tempat / Tgl. Lahir</td>
-                                    <td class="fw-semibold">{{ $data->tempat_lahir }}/{{ $data->tgl_lahir}}</td>
+                                    <td class="fw-semibold">{{ $nik->tempat_lahir }}/{{ $nik->tgl_lahir}}</td>
                                 </tr>
                                 <tr>
                                     <td>Kontak Pasien</td>
-                                    <td class="fw-semibold">{{ $data->no_hp }}</td>
+                                    <td class="fw-semibold">{{ $nik->no_hp }}</td>
                                 </tr>
                                 <tr>
                                     <td>Cara Bayar</td>
-                                    <td class="fw-semibold">{{ $data->cara_bayar }}</td>
+                                    <td class="fw-semibold">{{ $nik->cara_bayar }}</td>
                                 </tr>
                                 <tr>
                                     <td>Poliklinik Tujuan</td>
-                                    <td class="fw-semibold">{{ $data->poli_tujuan }}</td>
+                                    <td class="fw-semibold">{{ $nik->poli_tujuan }}</td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal kunjungan</td>
-                                    <td class="fw-semibold">{{ $data->tgl_kunjungan }}</td>
+                                    <td class="fw-semibold">{{ $nik->tgl_kunjungan }}</td>
                                 </tr>
                                 <tr class="table-warning">
                                     <td colspan="2">Silahkan Di Download </td>

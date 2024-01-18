@@ -34,7 +34,7 @@
                             <td class="fw-semibold">{{ $data->nama_ruangan }}</td>
                             <td>{{ $data->fasilitas }}</td>
                             <td>{{ $data->isi }}</td>
-                            <td>{{ $data->kososng }}</td>
+                            <td>{{ $data->kosong }}</td>
                             <td>{{ $data->jumlah_kamar }}</td>
                             <td>{{ $data->kelas }}</td>
                             <td>

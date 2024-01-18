@@ -214,8 +214,8 @@
                                                             $('#dokt').append('<option value="">--pilih--</option>');
                                                             $.each(kunjung,function(key, jadwal){
                                                                 $('select[name="dokter"]').append(
-                                                                '<option value="' + jadwal.jadwal + '">' +
-                                                                    jadwal.jadwal + '</option>'
+                                                                '<option value="' + jadwal.nama_dokter + '">' +
+                                                                    jadwal.nama_dokter + '</option>'
                                                                 );
                                                             });
                                                         } else {

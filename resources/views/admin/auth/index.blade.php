@@ -18,6 +18,7 @@
                             <th>Username</th>
                             <th>Specialist</th>
                             <th>Image</th>
+                            <th>Level</th>
                             <th class="text-center" style="width: 5%;">Action</th>
                         </tr>
                     </thead>
@@ -32,15 +33,28 @@
                             <td>{{ $data->username}}</td>
                             <td>{{ $data->spesialis }}</td>
                             <td><img src="{{ asset('storage/'.$data->image) }}" alt="" style="width: 20mm"></td>
+                            <td>@if ($data->level == 1)
+                                     Admin 
+                                @else
+                                     Doctor
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ url('auth/delete/'.$data->id) }}" method="POST">
                                     @csrf
                                     {{-- <a href="" class="btn btn-alt-info" data-bs-toggle="tooltip" title="View Data">
                                         <i class="fa fa-user"></i>
                                     </a> --}}
-                                    {{-- <a class="btn btn-alt-success" href="{{ url('auth/edit/'.$data->id) }}" data-bs-toggle="tooltip" title="Edit Data">
-                                        <i class="fa fa-pen-to-square"></i>
-                                    </a> --}}
+                                    @if ($data->level == 1)
+                                        <a class="btn btn-alt-success" href="{{ url('auth/editAdmin/'.$data->id) }}" data-bs-toggle="tooltip" title="Edit Data">
+                                            <i class="fa fa-pen-to-square"></i>
+                                        </a>
+                                    @else
+                                        <a class="btn btn-alt-success" href="{{ url('auth/editDokter/'.$data->id) }}" data-bs-toggle="tooltip" title="Edit Data">
+                                            <i class="fa fa-pen-to-square"></i>
+                                        </a> 
+                                    @endif
+                                    
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" class="btn btn-alt-danger show-alert-delete-box" data-bs-toggle="tooltip" title="delete">
                                         <i class="fa fa-trash-can"></i>

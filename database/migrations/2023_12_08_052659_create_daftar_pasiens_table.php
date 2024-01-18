@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('dokter', 100)->nullable();
             $table->string('konfirmasi', 50)->nullable();
             $table->string('pelayanan', 50)->nullable();
+            $table->string('nama_ruangan')->nullable();
+            $table->string('kelas')->nullable();
             $table->timestamps();
         });
     }

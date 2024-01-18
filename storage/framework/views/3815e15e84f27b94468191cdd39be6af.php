@@ -60,50 +60,50 @@
                             <tbody>
                                 <tr>
                                     <td>Nomor Registrasi</td>
-                                    <td class="fw-semibold"><?php echo e($data->no_registrasi); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->no_registrasi); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Nomor Antrian</td>
-                                    <td class="fw-semibold"><?php echo e($data->no_antrian); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->no_antrian); ?></td>
                                 </tr>
                                     <td>Loket Antrian</td>
-                                    <td class="fw-semibold">Loket <?php echo e($data->loket); ?></td>
+                                    <td class="fw-semibold">Loket <?php echo e($nik->loket); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Pasien</td>
-                                    <td class="fw-semibold"><?php echo e($data->jenis_pasien); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->jenis_pasien); ?></td>
                                 </tr>
                                 <tr>
                                     <td>No. Rekam Medis</td>
-                                    <td class="fw-semibold"><?php echo e($data->no_rekam_medis); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->no_rekam_medis); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Nama Pasien</td>
-                                    <td class="fw-semibold"><?php echo e($data->nama_pasien); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->nama_pasien); ?></td>
                                 </tr>
                                 <tr>
                                     <td>NIK Pasien</td>
-                                    <td class="fw-semibold"><?php echo e($data->nik); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->nik); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Tempat / Tgl. Lahir</td>
-                                    <td class="fw-semibold"><?php echo e($data->tempat_lahir); ?>/<?php echo e($data->tgl_lahir); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->tempat_lahir); ?>/<?php echo e($nik->tgl_lahir); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Kontak Pasien</td>
-                                    <td class="fw-semibold"><?php echo e($data->no_hp); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->no_hp); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Cara Bayar</td>
-                                    <td class="fw-semibold"><?php echo e($data->cara_bayar); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->cara_bayar); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Poliklinik Tujuan</td>
-                                    <td class="fw-semibold"><?php echo e($data->poli_tujuan); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->poli_tujuan); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal kunjungan</td>
-                                    <td class="fw-semibold"><?php echo e($data->tgl_kunjungan); ?></td>
+                                    <td class="fw-semibold"><?php echo e($nik->tgl_kunjungan); ?></td>
                                 </tr>
                                 <tr class="table-warning">
                                     <td colspan="2">Silahkan Di Download </td>

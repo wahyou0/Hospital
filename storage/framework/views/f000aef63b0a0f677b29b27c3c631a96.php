@@ -33,7 +33,7 @@
                             <td class="fw-semibold"><?php echo e($data->nama_ruangan); ?></td>
                             <td><?php echo e($data->fasilitas); ?></td>
                             <td><?php echo e($data->isi); ?></td>
-                            <td><?php echo e($data->kososng); ?></td>
+                            <td><?php echo e($data->kosong); ?></td>
                             <td><?php echo e($data->jumlah_kamar); ?></td>
                             <td><?php echo e($data->kelas); ?></td>
                             <td>

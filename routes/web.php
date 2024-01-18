@@ -131,21 +131,26 @@ Route::group(['middleware' => ['auth']], function (){
 
 
         Route::get('auth', [AuthController::class, 'list']);
-        Route::get('auth/edit/{id}', [AuthController::class, 'edit']);
-        Route::post('auth/update', [AuthController::class, 'update']);
+        Route::get('auth/editAdmin/{id}', [AuthController::class, 'editAdmin']);
+        Route::post('auth/updateAdmin', [AuthController::class, 'updateAdmin']);
+        Route::get('auth/editDokter/{id}', [AuthController::class, 'editDokter']);
+        Route::post('auth/updateDokter', [AuthController::class, 'updateDokter']);
         Route::delete('auth/delete/{id}', [AuthController::class, 'destroy']);
 
         Route::get('instalasi', [InstalasiController::class, 'index']);
         Route::get('instalasi/edit/{id}', [InstalasiController::class, 'edit']);
         Route::post('instalasi/update', [InstalasiController::class, 'update']);
         Route::delete('instalasi/delete/{id}', [InstalasiController::class, 'destroy']);
+        //data json
+        Route::get('instalasi/{id}', [InstalasiController::class, 'getruang']);
+        Route::get('kelas/{id}', [InstalasiController::class, 'getkelas']);
 
         Route::get('report', [ReportController::class, 'index']);
     });
 
     Route::group(['middleware' => ['CekUser:2']], function () {
 
-        Route::get('home-dokter', [HomeController::class, 'index']);
+        Route::get('index-dokter', [HomeController::class, 'index']);
         
         Route::get('jadwal', [HomeController::class, 'JadwalDokter']);
 

@@ -126,14 +126,12 @@ class DaftarPasienControlleer extends Controller
 
 
         $ambilnik = $request->nik;
-        $reqnik = konfirmasi_pasien::all()->where('nik',$ambilnik)->first();
+        $reqnik = konfirmasi_pasien::all()->where('no_rekam_medis',$ambilnik)->first();
+        $reqmedis = konfirmasi_pasien::all()->where('no_rekam_medis',$ambilnik)->first();
         // dd($reqnik);
 
-        if( $reqnik == null ) {
-            return back()->withErrors([
-                'nik' => 'Your NIK has not been registered. Select a new patient',
-            ]);
-        }else {
+        if( $reqnik != null || $reqmedis != null) {
+
             if(empty($request->session()->get('data'))){
                 $data = new daftar_pasien();
                 $data->fill($validatedData);
@@ -147,6 +145,12 @@ class DaftarPasienControlleer extends Controller
             }
     
             return redirect('pendaftaran-pasien/create-step-two');
+        }
+        else {
+
+            return back()->withErrors([
+                'nik' => ' Your medical record number has not been registered. Select a new patient',
+            ]);
         }
         
     }
@@ -163,7 +167,7 @@ class DaftarPasienControlleer extends Controller
         $data = $request->session()->get('data');
         $reqnik = $request->session()->get('reqnik');
         // $loket = loket_option::all()->groupBy('loket');
-        $opsi = loket_option::all();
+        $opsi = loket::all();
         
         return view('admin.daftar_pasien.create_step_two',compact('data','reqnik','opsi'));
     }
@@ -203,7 +207,7 @@ class DaftarPasienControlleer extends Controller
         }
 
         //nomor antrian
-        $tgl = daftar_pasien::all()->last();
+        $tgl = daftar_pasien::all()->where('tgl_kunjungan',$d)->last();
         $kunjungan = $request->tgl_kunjungan;
 
         if ( $tgl == null ){
@@ -220,8 +224,8 @@ class DaftarPasienControlleer extends Controller
             } else {
                 $uantri = (int)substr($tgl->no_antrian, -4) + 1;
             }
-            // dd($uantri);
         }
+        // dd($uantri);
 
     	$validatedData = $request->validate([
             'loket' => 'required',
@@ -234,7 +238,7 @@ class DaftarPasienControlleer extends Controller
             'cara_bayar' => 'required',
             'tgl_kunjungan' => 'required'
         ]);
-
+        
         $data = new daftar_pasien();
         $data = $request->session()->get('data');
         $data->fill($validatedData);
@@ -244,12 +248,12 @@ class DaftarPasienControlleer extends Controller
         // $data->dokter = $request->dokter;
         $data->no_antrian = $uantri;
         $data->no_registrasi = $nomer;
-        // $request->session()->put('data', $data);
+        $request->session()->put('data', $data);
+        // dd($data);
 
-        // save data
         $data->konfirmasi = 'belum dipanggil';
 
-        $nik = $request['nik'];
+        $nik = $data->nik;
         $cekisi = konfirmasi_pasien::where('nik',$nik)->count();
 
         if ($cekisi == 0) {
@@ -293,27 +297,32 @@ class DaftarPasienControlleer extends Controller
             $pasien->save();
         }
 
-        
         $data->save();
 
+        $ambilnik = $data->nik;
+        $nik = konfirmasi_pasien::all()->where('nik',$ambilnik)->first();
+        
+        $request->session()->put('nik', $nik);
+        $request->session()->forget('data');
+        
+        
         return redirect('pendaftaran-pasien/create-step-three');
     }
 
     public function createStepThree(Request $request)
     {
-        $data = $request->session()->get('data');
+        $nik = $request->session()->get('nik');
 
-        return view('admin.daftar_pasien.create_step_three',compact('data'));
+        return view('admin.daftar_pasien.create_step_three',compact('nik'));
     }
 
     public function view_pdf(Request $request)
     {
-        $data = $request->session()->get('data');
-     
+        $data = $request->session()->get('nik');
+        
         $pdf = Pdf::loadView('pdf', ['data' => $data]);
-        $request->session()->forget('data');
-
-        return $pdf->download('antrian.pdf');
+     
+        return $pdf->download('antrian.pdf'); 
 
     }
 

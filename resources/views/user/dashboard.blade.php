@@ -98,10 +98,10 @@
     <script src="{{ asset('code/assets/js/codebase.app.min.js') }}"></script>
 
     <!-- Page JS Plugins -->
-    <script src="{{ asset('codeassets/js/plugins/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('code/assets/js/plugins/chart.js/chart.umd.js') }}"></script>
 
     <!-- Page JS Code -->
-    <script src="{{ asset('codeassets/js/pages/db_corporate.min.js') }}"></script>
+    <script src="{{ asset('code/assets/js/pages/db_corporate.min.js') }}"></script>
 
     {{-- datetime picker --}}
     <script src="{{ asset('code/assets/js/plugins/pwstrength-bootstrap/pwstrength-bootstrap.min.js') }}"></script>

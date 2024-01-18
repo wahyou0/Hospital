@@ -18,7 +18,7 @@ class AuthController extends Controller
             if ($user->level == '1') {
                 return redirect()->intended('home');
             } elseif ($user->level == '2') {
-                return redirect()->intended('home-dokter');
+                return redirect()->intended('index-dokter');
             }
         }
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
             if ($user->level == '1') {
                 return redirect()->intended('home');
             } elseif ($user->level == '2') {
-                return redirect()->intended('home-dokter');
+                return redirect()->intended('index-dokter');
             }
 
             return redirect()->intended('/');
@@ -85,7 +85,7 @@ class AuthController extends Controller
                 'password.required' => 'password cannot be empty',
                 'password.min' => 'Password must be at least 6 characters',
                 
-            ],  
+            ]  
         );
 
         if($request->hasFile('image')){
@@ -111,7 +111,7 @@ class AuthController extends Controller
             if ($user->level == '1') {
                 return redirect()->intended('home');
             } elseif ($user->level == '2') {
-                return redirect()->intended('home-dokter');
+                return redirect()->intended('index-dokter');
             }
 
             return redirect()->intended('/');
@@ -141,7 +141,7 @@ class AuthController extends Controller
                 'password.required' => 'password cannot be empty',
                 'password.min' => 'Password must be at least 6 characters',
                 
-            ],  
+            ]  
         );
 
         if($request->hasFile('image')){
@@ -150,7 +150,6 @@ class AuthController extends Controller
             $path = '';
         }
 
-        dd($request);
 
         User::create([
             'name' => $request['name'],
@@ -170,7 +169,7 @@ class AuthController extends Controller
             if ($user->level == '1') {
                 return redirect()->intended('home');
             } elseif ($user->level == '2') {
-                return redirect()->intended('home-dokter');
+                return redirect()->intended('index-dokter');
             }
 
             return redirect()->intended('/');
@@ -184,17 +183,110 @@ class AuthController extends Controller
         return view('admin.auth.index', compact('list'));
     }
 
-    public function edit(string $id)
+    public function editAdmin(string $id)
+    {
+        $data = User::find($id);
+
+        return view('admin.auth.edit_admin', compact('data'));
+    }
+
+    public function editDokter(string $id)
     {
         $data = User::find($id);
         $loket = loket::all();
 
-        return view('admin.auth.edit', compact('loket','data'));
+        return view('admin.auth.edit_dokter', compact('loket','data'));
+    }
+    
+    public function updateAdmin(Request $request)
+    {
+        $request->validate([
+            'username' => 'unique:users,username',
+            'username' => 'nullable',
+            'image' => 'image|max:10048|nullable',
+            'password' => 'min:6|nullable'
+        ],
+            [
+                'username.unique' => 'Username already registered, use another username',  
+                'password.min' => 'Password must be at least 6 characters'
+                
+            ]  
+        );
+        
+        $name = $request->name;
+        $username = $request->username;
+        $password = $request->password;
+
+        $data = User::find($request['id']);
+
+        $data->name = $name;
+        $data->username = $username;
+        $cekfoto = $request->input('image');
+        if($request->hasFile('image')){
+            if ($cekfoto != null) {
+                Storage::delete($cekfoto);
+            }
+            $path = $request->file('image')->store('uploads');
+        }else{
+            $path = $data->image;
+        }
+
+        
+        $data->image = $path;
+        $data->password = $password;
+
+        if ($data->save()){
+            return redirect('/auth')->with('success', 'updated successfully');
+        }else {
+            return Redirect('/auth')->with('gagal', 'failed to update');
+        }
     }
 
-    public function update(Request $request)
+    public function updateDokter(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'username' => 'unique:users,username',
+            'username' => 'nullable',
+            'image' => 'mimes:png,jpg,jpeg|image|max:10048|nullable',
+            'password' => 'min:6|nullable'
+        ],
+            [
+                'username.unique' => 'Username already registered, use another username',  
+                'password.min' => 'Password must be at least 6 characters'
+                
+            ]  
+        );
+
+        $name = $request->name;
+        $username = $request->username;
+        $spesialis = $request->spesialis;
+        $password = $request->password;
+
+        $data = User::find($request['id']);
+
+        $data->name = $name;
+        $data->spesialis = $spesialis;
+        $data->username = $username;
+        $cekfoto = $request->input('image');
+
+        $cekfoto = $request->input('image');
+        if($request->hasFile('image')){
+            if ($cekfoto != null) {
+                Storage::delete($cekfoto);
+            }
+            $path = $request->file('image')->store('uploads');
+        }else{
+            $path = $data->image;
+        }
+
+        $data->image = $path;
+        $data->password = $password;
+
+        if ($data->save()){
+            return redirect('/auth')->with('success', 'updated successfully');
+        }else {
+            return Redirect('/auth')->with('gagal', 'failed to update');
+        }
     }
 
     public function destroy(string $id)

@@ -22,7 +22,7 @@
                                             <input hidden type="text" class="form-control" name="jenis_pasien" value="Pasien Lama">
                                         </div>
                                         <div class="mb-4">
-                                            <label class="form-label">Rekam Medis/NIK <span class="text-danger">*</span></label>
+                                            <label class="form-label">Rekam Medis <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control <?php $__errorArgs = ['nik'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
